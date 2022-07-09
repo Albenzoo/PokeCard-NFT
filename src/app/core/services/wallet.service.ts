@@ -1,19 +1,35 @@
 import { Injectable } from '@angular/core';
-import Web3 from "web3";
+import Web3 from 'web3';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class WalletService {
+  constructor() {}
 
-  constructor() { }
+  web3Instance: any;
 
-  async connect() {
+  connect(): boolean {
     if (window.ethereum) {
-      console.log("I see a wallet!");
+      console.log('Metamask is installed!');
+      window.ethereum
+        .request({
+          method: 'eth_requestAccounts',
+        })
+        .then(() => {
+          this.web3Instance = new Web3(window.ethereum);
+          return true;
+        })
+        .catch(() => {
+          console.log('Somethings goes wrong...retry');
+          return false;
+        });
     } else {
-      window.alert('Non-Ethereum browser detected. You Should consider using MetaMask!');
+      window.alert(
+        'Non-Ethereum browser detected. You Should consider using MetaMask!'
+      );
+      return false;
     }
+    return false;
   }
-
 }
