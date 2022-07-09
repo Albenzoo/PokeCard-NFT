@@ -18,6 +18,8 @@ export class WalletService {
         })
         .then(() => {
           this.web3Instance = new Web3(window.ethereum);
+          console.log('Account connected successfully!', this.web3Instance);
+          console.log('Acccount', this.web3Instance.eth.getAccounts());
           return true;
         })
         .catch(() => {
