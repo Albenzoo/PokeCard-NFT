@@ -8,6 +8,7 @@ export class WalletService {
   constructor() {}
 
   web3Instance: any;
+  address: string = '';
 
   connect(): boolean {
     if (window.ethereum) {
@@ -16,10 +17,12 @@ export class WalletService {
         .request({
           method: 'eth_requestAccounts',
         })
-        .then(() => {
+        .then((accountsAddress: string) => {
+          this.address = accountsAddress[0];
           this.web3Instance = new Web3(window.ethereum);
+          //const accounts = this.web3Instance.eth.getAccounts();
+
           console.log('Account connected successfully!', this.web3Instance);
-          console.log('Acccount', this.web3Instance.eth.getAccounts());
           return true;
         })
         .catch(() => {
