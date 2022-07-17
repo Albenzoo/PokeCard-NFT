@@ -2,14 +2,25 @@
   <mat-toolbar-row>
     <span>Web3 project</span>
     <span class="spacer"></span>
-    <button mat-raised-button (click)="connectWallet()">
+    <button
+      mat-raised-button
+      [ngStyle]="this.wallet.web3Instance && { 'background-color': 'green' }"
+      (click)="connectWallet()"
+    >
       <mat-icon
+        *ngIf="this.wallet.web3Instance"
         class="wallet"
         aria-hidden="false"
         aria-label="Example user verified icon"
         >account_balance_wallet
       </mat-icon>
-      Connect wallet
+      {{
+        this.wallet.web3Instance
+          ? (this.wallet.address | slice: 0:3) +
+            "..." +
+            (this.wallet.address | slice: -4)
+          : "Connect wallet"
+      }}
     </button>
   </mat-toolbar-row>
 </mat-toolbar>
