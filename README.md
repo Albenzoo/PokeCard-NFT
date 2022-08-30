@@ -1,7 +1,13 @@
-# ProjectWeb3
+# Sample Hardhat Project
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.5.
+This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
 
-## Development server
+Try running some of the following tasks:
 
-Run `ng serve` for a dev server ( or `ng serve --open` to open the browser directly ). Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+```shell
+npx hardhat help
+npx hardhat test
+GAS_REPORT=true npx hardhat test
+npx hardhat node
+npx hardhat run scripts/deploy.ts
+```
