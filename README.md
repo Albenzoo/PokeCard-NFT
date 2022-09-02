@@ -4,3 +4,6 @@ This project demonstrates a basic Hardhat use case. It comes with a sample contr
 
 Deploy:
 npx hardhat --network goerli run scripts/deploy.ts
+
+Execute mint-nft script:
+npx ts-node scripts/mint-nft.ts
