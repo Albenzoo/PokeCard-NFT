@@ -12,6 +12,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {}
 
   connectWallet() {
-    if (!this.wallet.web3Instance) this.wallet.connect();
+    if (!this.wallet.web3) this.wallet.connect();
   }
 }
