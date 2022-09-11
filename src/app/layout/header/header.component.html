@@ -4,18 +4,18 @@
     <span class="spacer"></span>
     <button
       mat-raised-button
-      [ngStyle]="this.wallet.web3Instance && { 'background-color': 'green' }"
+      [ngStyle]="this.wallet.web3 && { 'background-color': 'green' }"
       (click)="connectWallet()"
     >
       <mat-icon
-        *ngIf="this.wallet.web3Instance"
+        *ngIf="this.wallet.web3"
         class="wallet"
         aria-hidden="false"
         aria-label="Example user verified icon"
         >account_balance_wallet
       </mat-icon>
       {{
-        this.wallet.web3Instance
+        this.wallet.web3
           ? (this.wallet.address | slice: 0:3) +
             "..." +
             (this.wallet.address | slice: -4)
