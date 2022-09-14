@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Contract } from 'ethers';
+import { from } from 'rxjs';
+import { WalletService } from 'src/app/core/services/wallet.service';
+import Web3 from 'web3';
 
 @Component({
   selector: 'app-home-page',
@@ -7,9 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(public wallet: WalletService) { }
 
   ngOnInit(): void {
+    /*     const nftContract = new this.wallet.web3.eth.Contract(
+          this.wallet.contractInfo.contractABI,
+          this.wallet.contractInfo.contractAddress
+        );
+        nftContract.defaultAccount = this.wallet.walletAddress;
+        const nftBalance = nftContract.methods.balanceOf(this.wallet.walletAddress).call(); */
+
   }
 
 }
