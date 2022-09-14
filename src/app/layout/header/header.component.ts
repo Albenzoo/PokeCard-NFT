@@ -7,11 +7,11 @@ import { WalletService } from 'src/app/core/services/wallet.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(public wallet: WalletService) {}
+  constructor(public wallet: WalletService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   connectWallet() {
-    if (!this.wallet.web3) this.wallet.connect();
+    if (!this.wallet.walletAddress) this.wallet.connect();
   }
 }
