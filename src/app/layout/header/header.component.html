@@ -15,10 +15,10 @@
         >account_balance_wallet
       </mat-icon>
       {{
-        this.wallet.web3
-          ? (this.wallet.address | slice: 0:3) +
+        this.wallet.walletAddress
+          ? (this.wallet.walletAddress | slice: 0:3) +
             "..." +
-            (this.wallet.address | slice: -4)
+            (this.wallet.walletAddress | slice: -4)
           : "Connect wallet"
       }}
     </button>
