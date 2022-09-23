@@ -4,9 +4,9 @@ import * as dotenv from 'dotenv';
 import { AbiItem } from 'web3-utils';
 
 dotenv.config();
-const { API_URL, PUBLIC_KEY, PRIVATE_KEY } = process.env;
+const { API_URL, PUBLIC_KEY, PRIVATE_KEY, CONTRACT_ADDRESS } = process.env;
 const web3 = createAlchemyWeb3(API_URL!);
-const contractAddress = '0x99151d26159362457c41b8c96a93680ef776b7dd';
+const contractAddress = CONTRACT_ADDRESS;
 console.log(JSON.stringify(contract.abi));
 const nftContract = new web3.eth.Contract(
   contract.abi as AbiItem[],
@@ -51,4 +51,4 @@ async function mintNFT(tokenURI: string) {
     });
 }
 
-mintNFT('ipfs://QmeTjtJ2BHHS62KTrKYKGTdNhPdh38sGenhz7PFRSug6SG');
+mintNFT('ipfs://QmT6ruDBvGoMEU6QSF4rLyozUdjww3e2RdrxgWwQ8HcWLj');
