@@ -1,7 +1,8 @@
 import { createAlchemyWeb3 } from '@alch/alchemy-web3';
-import * as contract from '../artifacts/contracts/MyNFT.sol/MyNFT.json';
+import * as contract from '../artifacts/contracts/MyNFT.sol/NFTMarketplace.json';
 import * as dotenv from 'dotenv';
 import { AbiItem } from 'web3-utils';
+import pinataMnitCid from './pinataMintCid.json';
 
 dotenv.config();
 const { API_URL, PUBLIC_KEY, PRIVATE_KEY, CONTRACT_ADDRESS } = process.env;
@@ -50,5 +51,8 @@ async function mintNFT(tokenURI: string) {
       console.log(' Promise failed:', err);
     });
 }
-
-mintNFT('ipfs://QmT6ruDBvGoMEU6QSF4rLyozUdjww3e2RdrxgWwQ8HcWLj');
+console.log(pinataMnitCid);
+for (const cidCode of pinataMnitCid.CidCodes) {
+  console.log("Minting: ", cidCode);
+  mintNFT('ipfs://' + cidCode);
+}
