@@ -9,7 +9,7 @@ Deploy contract script:
 npx hardhat --network goerli run scripts/deploy.ts
 
 contract deployed to address:
-0x6e9ff2411E1D02E5cc866E6c824a52D2920202e6
+0x93948a0e51E556728aF0862Ab258C0aBCD2BdDc1
 
 Execute mint-nft script:
 npx ts-node scripts/mint-nft.ts
