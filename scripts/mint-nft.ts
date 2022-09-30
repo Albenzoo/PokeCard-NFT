@@ -8,7 +8,7 @@ dotenv.config();
 const { API_URL, PUBLIC_KEY, PRIVATE_KEY, CONTRACT_ADDRESS } = process.env;
 const web3 = createAlchemyWeb3(API_URL!);
 const contractAddress = CONTRACT_ADDRESS;
-console.log(JSON.stringify(contract.abi));
+/* console.log(JSON.stringify(contract.abi)); */
 const nftContract = new web3.eth.Contract(
   contract.abi as AbiItem[],
   contractAddress
@@ -17,17 +17,29 @@ const nftContract = new web3.eth.Contract(
 async function mintNFT(tokenURI: string) {
   const nonce = await web3.eth.getTransactionCount(PUBLIC_KEY!, 'latest'); //get latest nonce
 
+  const inputPrice: number = 0.02;
+  const price = web3.utils.toWei(inputPrice.toString(), 'ether');
+  const priceBN = web3.utils.toBN(price);
+  console.log("NFT price set:", price, "Wei");
+
+  //get the fee price to be payed in every transaction
+  let feePrice = await nftContract.methods.getListPrice().call();
+  feePrice = feePrice.toString();
+  console.log("Fee:", feePrice, "Wei");
+
+  //actually create the NFT
+  //return;
   //the transaction
   const tx = {
     from: PUBLIC_KEY,
     to: contractAddress,
     nonce: nonce,
     gas: 500000,
-    data: nftContract.methods.mintNFT(PUBLIC_KEY, tokenURI).encodeABI(),
+    data: nftContract.methods.createToken(tokenURI, priceBN).encodeABI(),
+    value: feePrice,
   };
 
-  const signPromise = web3.eth.accounts.signTransaction(tx, PRIVATE_KEY!);
-  signPromise
+  const signPromise = web3.eth.accounts.signTransaction(tx, PRIVATE_KEY!)
     .then((signedTx: any) => {
       web3.eth.sendSignedTransaction(
         signedTx.rawTransaction,
@@ -51,8 +63,23 @@ async function mintNFT(tokenURI: string) {
       console.log(' Promise failed:', err);
     });
 }
-console.log(pinataMnitCid);
-for (const cidCode of pinataMnitCid.CidCodes) {
-  console.log("Minting: ", cidCode);
-  mintNFT('ipfs://' + cidCode);
+
+const mintAllNfts = async () => {
+  for (const cidCode of pinataMnitCid.CidCodes) {
+    console.log("Minting:", cidCode);
+    await mintNFT('ipfs://' + cidCode);
+    await timeout(30000);
+    console.log("...next...");
+  }
+  console.log('All NFTS were minted');
+
+};
+
+function timeout(ms: any) {
+  return new Promise(resolve => {
+    setTimeout(resolve, ms);
+  });
 }
+
+mintAllNfts();
+
