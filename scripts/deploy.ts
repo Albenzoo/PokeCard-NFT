@@ -2,7 +2,7 @@ import { ethers } from 'hardhat';
 
 async function main() {
   console.log({ ethers });
-  const MyNFT = await ethers.getContractFactory("NFTCardMarketplace");
+  const MyNFT = await ethers.getContractFactory("NFTMarketplace");
 
   // Start deployment, returning a promise that resolves to a contract object
   const myNFT = await MyNFT.deploy();
