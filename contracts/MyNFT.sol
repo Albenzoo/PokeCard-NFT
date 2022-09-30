@@ -170,6 +170,7 @@ contract NFTMarketplace is ERC721URIStorage {
         return items;
     }
 
+    //Sell NFT to other address
     function executeSale(uint256 tokenId) public payable {
         uint256 price = idToListedToken[tokenId].price;
         address seller = idToListedToken[tokenId].seller;
