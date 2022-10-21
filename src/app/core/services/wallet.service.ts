@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import Web3 from 'web3';
-import * as contract from '../../../../artifacts/contracts/MyNFT.sol/MyNFT.json';
+import * as contract from '../../../../artifacts/contracts/MyNFT.sol/NFTMarketplace.json';
 import { AbiItem } from 'web3-utils';
 import { ContractInfo } from '../models/contract-info';
 import { resolve } from 'dns';
@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class WalletService {
-  constructor() {}
+  constructor() { }
 
   web3: any = new Web3(window.ethereum);
   walletAddress: string = '';
@@ -38,24 +38,34 @@ export class WalletService {
     }) as Promise<number>;
   }
 
-  public getTokenId() {
-    this.nftContract.defaultAccount = this.walletAddress;
-    let tokenId;
-    let tokemMetadataURI;
-    this.nftContract.methods
-      .tokenOfOwnerByIndex(this.walletAddress, 0)
-      .call()
-      .then((res: any) => {
-        tokenId = res;
-        console.log({ tokenId });
-        this.nftContract.methods
-          .tokenURI(tokenId)
-          .call()
-          .then((res: any) => {
-            tokemMetadataURI = res;
-            console.log({ tokemMetadataURI });
-          });
-      });
+  public async getTokenId() {
+    let sumPrice = 0;
+    //create an NFT Token
+    let transaction = await this.nftContract.methods.getMyNFTs().call();
+    console.log({ transaction });
+    /*
+    * Below function takes the metadata from tokenURI and the data returned by getMyNFTs() contract function
+    * and creates an object of information that is to be displayed
+    */
+
+    /* const items = await Promise.all(transaction.map(async i => {
+      const tokenURI = await contract.tokenURI(i.tokenId);
+      let meta = await axios.get(tokenURI);
+      meta = meta.data;
+
+      let price = ethers.utils.formatUnits(i.price.toString(), 'ether');
+      let item = {
+        price,
+        tokenId: i.tokenId.toNumber(),
+        seller: i.seller,
+        owner: i.owner,
+        image: meta.image,
+        name: meta.name,
+        description: meta.description,
+      }
+      sumPrice += Number(price);
+      return item;
+    })) */
   }
 
   connect(): boolean {
