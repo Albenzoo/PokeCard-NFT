@@ -20,12 +20,12 @@ async function mintNFT(tokenURI: string) {
   const inputPrice: number = 0.02;
   const price = web3.utils.toWei(inputPrice.toString(), 'ether');
   const priceBN = web3.utils.toBN(price);
-  console.log("NFT price set:", price, "Wei");
+  console.log('NFT price set:', price, 'Wei');
 
   //get the fee price to be payed in every transaction
   let feePrice = await nftContract.methods.getListPrice().call();
   feePrice = feePrice.toString();
-  console.log("Fee:", feePrice, "Wei");
+  console.log('Fee:', feePrice, 'Wei');
 
   //actually create the NFT
   //return;
@@ -39,7 +39,8 @@ async function mintNFT(tokenURI: string) {
     value: feePrice,
   };
 
-  const signPromise = web3.eth.accounts.signTransaction(tx, PRIVATE_KEY!)
+  const signPromise = web3.eth.accounts
+    .signTransaction(tx, PRIVATE_KEY!)
     .then((signedTx: any) => {
       web3.eth.sendSignedTransaction(
         signedTx.rawTransaction,
@@ -66,20 +67,18 @@ async function mintNFT(tokenURI: string) {
 
 const mintAllNfts = async () => {
   for (const cidCode of pinataMnitCid.CidCodes) {
-    console.log("Minting:", cidCode);
+    console.log('Minting:', cidCode);
     await mintNFT('ipfs://' + cidCode);
-    await timeout(30000);
-    console.log("...next...");
+    await timeout(60000);
+    console.log('...next...');
   }
   console.log('All NFTS were minted');
-
 };
 
 function timeout(ms: any) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(resolve, ms);
   });
 }
 
 mintAllNfts();
-
