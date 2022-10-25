@@ -13,3 +13,11 @@ contract deployed to address:
 
 Execute mint-nft script:
 npx ts-node scripts/mint-nft.ts
+
+Spesso provando a recuperare tramite il link ipfs da pinata ritorna errore di CORS
+https://ipfs.github.io/public-gateway-checker/
+qui ci sono tutti i siti che possono recuperare file caricati su ipfs
+
+- sistemare chiamata api con promise (esempio sotto)
+- includere multi base url ipfs
+- gestire tipo di ritorno Card
