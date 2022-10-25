@@ -5,6 +5,7 @@ import { AbiItem } from 'web3-utils';
 import { ContractInfo } from '../models/contract-info';
 import { resolve } from 'dns';
 import { environment } from 'src/environments/environment';
+import { any, json } from 'hardhat/internal/core/params/argumentTypes';
 
 @Injectable({
   providedIn: 'root',
@@ -37,17 +38,47 @@ export class WalletService {
         });
     }) as Promise<number>;
   }
+  async getDataFromPinataURI(url: string) {
+    url = url.replace(':/', '');
+    const getInfo = await fetch(environment.pinataBaseUrl + url, {
+      method: 'GET',
+    }).then((response: any) => {
+      console.log("response: ", response);
+      return response.json();
+    }).then(function (data) {
+      console.log("parsed data:", data);
+      return data;
+    }).catch(e => console.log("Errore: ", e));
+    return getInfo;
+  }
+  getUsers(): Promise<any[]> {
 
-  public async getTokenId() {
-    let sumPrice = 0;
-    //create an NFT Token
-    let transaction = await this.nftContract.methods.getMyNFTs().call();
-    console.log({ transaction });
-    /*
-    * Below function takes the metadata from tokenURI and the data returned by getMyNFTs() contract function
-    * and creates an object of information that is to be displayed
-    */
+    for (let baseUrl of environment.ipfsBaseUrlGeteway) { }
+    return fetch('/users.json')
+      // the JSON body is taken from the response
+      .then(res => res.json())
+      .then(res => {
+        // The response has an `any` type, so we need to cast
+        // it to the `User` type, and return it from the promise
+        return res
+      })
+  }
 
+  public async getAllNFTs() {
+    //get all the transaction in the contract
+    let transaction = await this.nftContract.methods.getAllNFTs().call();
+    //Fetch all the details of every NFT from the contract and display
+    const items = await Promise.all(transaction.map(async (i: any) => {
+      const tokenURI = await this.nftContract.methods.tokenURI(i.tokenId).call();
+      const nftData = await this.getDataFromPinataURI(tokenURI);
+      console.log({ nftData });
+      /*       let meta = await axios.get(tokenURI);
+            meta = meta.data;
+      
+            return item; */
+    }))
+
+    //Fetch all the details of every NFT from the contract and display
     /* const items = await Promise.all(transaction.map(async i => {
       const tokenURI = await contract.tokenURI(i.tokenId);
       let meta = await axios.get(tokenURI);
@@ -63,7 +94,6 @@ export class WalletService {
         name: meta.name,
         description: meta.description,
       }
-      sumPrice += Number(price);
       return item;
     })) */
   }
