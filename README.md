@@ -18,6 +18,6 @@ Spesso provando a recuperare tramite il link ipfs da pinata ritorna errore di CO
 https://ipfs.github.io/public-gateway-checker/
 qui ci sono tutti i siti che possono recuperare file caricati su ipfs
 
-- sistemare chiamata api con promise (esempio sotto)
-- includere multi base url ipfs
+- creare pagina creazione card
+- creare layout card
 - gestire tipo di ritorno Card
