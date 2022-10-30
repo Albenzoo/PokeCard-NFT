@@ -6,12 +6,15 @@ import { ContractInfo } from '../models/contract-info';
 import { resolve } from 'dns';
 import { environment } from 'src/environments/environment';
 import { any, json } from 'hardhat/internal/core/params/argumentTypes';
+import { ApiService } from './api.service';
+import { url } from 'inspector';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WalletService {
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   web3: any = new Web3(window.ethereum);
   walletAddress: string = '';
@@ -23,6 +26,8 @@ export class WalletService {
     this.contractInfo.contractABI,
     this.contractInfo.contractAddress
   );
+
+  allNfts: any[] = [];
 
   public getNftBalance(): Promise<number> {
     return new Promise((resolve, reject) => {
@@ -38,64 +43,34 @@ export class WalletService {
         });
     }) as Promise<number>;
   }
-  async getDataFromPinataURI(url: string) {
-    url = url.replace(':/', '');
-    const getInfo = await fetch(environment.pinataBaseUrl + url, {
-      method: 'GET',
-    }).then((response: any) => {
-      console.log("response: ", response);
-      return response.json();
-    }).then(function (data) {
-      console.log("parsed data:", data);
-      return data;
-    }).catch(e => console.log("Errore: ", e));
-    return getInfo;
-  }
-  getUsers(): Promise<any[]> {
 
-    for (let baseUrl of environment.ipfsBaseUrlGeteway) { }
-    return fetch('/users.json')
-      // the JSON body is taken from the response
-      .then(res => res.json())
-      .then(res => {
-        // The response has an `any` type, so we need to cast
-        // it to the `User` type, and return it from the promise
-        return res
-      })
+
+  storeDataFromURI(url: string): void {
+    url = url.replace(':/', '');
+    this.apiService.getNftInfo(environment.ipfsBaseUrl + url).subscribe({
+      next: (data: any) => {
+        console.log({ data });
+        this.allNfts.push(data);
+        console.log("Tutti gli NFT:", this.allNfts);
+      },
+      error: (error: any) => {
+        console.log({ error });
+      },
+      complete: () => { }
+    });
   }
 
   public async getAllNFTs() {
     //get all the transaction in the contract
-    let transaction = await this.nftContract.methods.getAllNFTs().call();
+    let transactions = await this.nftContract.methods.getAllNFTs().call();
     //Fetch all the details of every NFT from the contract and display
-    const items = await Promise.all(transaction.map(async (i: any) => {
+    const items = await Promise.all(transactions.map(async (i: any) => {
       const tokenURI = await this.nftContract.methods.tokenURI(i.tokenId).call();
-      const nftData = await this.getDataFromPinataURI(tokenURI);
-      console.log({ nftData });
-      /*       let meta = await axios.get(tokenURI);
-            meta = meta.data;
-      
-            return item; */
-    }))
+      //const nftData = await this.getDataFromPinataURI(tokenURI);
+      this.storeDataFromURI(tokenURI);
+    }));
 
-    //Fetch all the details of every NFT from the contract and display
-    /* const items = await Promise.all(transaction.map(async i => {
-      const tokenURI = await contract.tokenURI(i.tokenId);
-      let meta = await axios.get(tokenURI);
-      meta = meta.data;
 
-      let price = ethers.utils.formatUnits(i.price.toString(), 'ether');
-      let item = {
-        price,
-        tokenId: i.tokenId.toNumber(),
-        seller: i.seller,
-        owner: i.owner,
-        image: meta.image,
-        name: meta.name,
-        description: meta.description,
-      }
-      return item;
-    })) */
   }
 
   connect(): boolean {
