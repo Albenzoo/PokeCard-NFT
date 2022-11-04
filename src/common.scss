@@ -1,0 +1,17 @@
+$smartphone-minWidth: 320px;
+$tablet-minWidth: 481px;
+$desktop-minWidth: 800px;
+
+//when used desktop
+@media (min-width: $desktop-minWidth) {
+    .only-mobile {
+        display: none;
+    }
+}
+
+//when used smartphone
+@media (max-width: #{$desktop-minWidth - 1px}) {
+    .only-desktop {
+        display: none;
+    }
+}
