@@ -1,7 +1,18 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>Web3 project</span>
+    <img
+      src="../../../assets/image/NFT-card-logo.png"
+      alt="logo"
+      class="logo"
+    />
+
+    <div class="only-desktop">
+      <a href="#" mat-button>Home</a>
+
+      <a href="#" mat-button>Create NFT</a>
+    </div>
     <span class="spacer"></span>
+
     <button
       mat-raised-button
       [ngStyle]="this.wallet.web3 && { 'background-color': 'green' }"
