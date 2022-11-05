@@ -12,11 +12,19 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
+import { Routes, RouterModule } from '@angular/router';
+import { CreateNftComponent } from './pages/create-nft/create-nft.component';
+
+const routes: Routes = [
+  { path: '', component: HomePageComponent },
+  { path: 'create-nft', component: CreateNftComponent },
+];
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     HeaderComponent,
+    CreateNftComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,9 +35,11 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(routes),
   ],
+  exports: [RouterModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
