@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --open",
+    "config": "ts-node ./scripts/setenv.ts",
+    "start": "npm run config -- --environment=dev && ng serve --open",
     "compile-contract": "npx hardhat compile",
     "deploy-contract": "npx hardhat --network goerli run scripts/deploy.ts",
     "mint": "npx ts-node scripts/mint-nft.ts",
-    "build": "ng build",
+    "build": "npm run config -- --environment=prod && ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -37,6 +38,7 @@
     "tslib": "^2.3.0",
     "url": "^0.11.0",
     "web3": "^1.7.3",
+    "yargs": "^17.6.2",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
