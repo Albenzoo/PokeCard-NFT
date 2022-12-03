@@ -34,7 +34,7 @@ export class PinataService {
       }).pipe(map((response: any) => {
         return {
           success: true,
-          pinataURL: `${environment.ipfsBaseUrl}ipfs/` + response?.IpfsHash
+          pinataURL: `ipfs://${response?.IpfsHash}`
         };
       })
         ,);
@@ -64,10 +64,9 @@ export class PinataService {
         }
       }).pipe(
         map((response: any) => {
-          console.log({ response });
           return {
             success: true,
-            pinataURL: `${environment.ipfsBaseUrl}ipfs/` + response?.IpfsHash
+            pinataURL: `ipfs://${response?.IpfsHash}`
           };
         })
       );
@@ -77,7 +76,5 @@ export class PinataService {
 
 
 }
-function trowhError(arg0: { success: boolean; message: any; }): any {
-  throw new Error('Function not implemented.');
-}
+
 
