@@ -29,7 +29,6 @@ export class CreateNftComponent implements OnInit {
 
   ngOnInit() {
 
-
   }
 
 
