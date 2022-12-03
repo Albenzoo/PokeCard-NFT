@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Card } from '../models/card';
-import * as dotenv from 'dotenv';
-import { map } from 'rxjs';
+import { catchError, map, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 
@@ -16,17 +15,16 @@ export class PinataService {
   }
 
   uploadJSONToIPFS(newPokemonCard: Card) {
-    const url = `https://api.pinata.cloud/pinning/pinJSONToIPFS`;
+    const url = `${environment.pinataBaseUrl}pinning/pinJSONToIPFS`;
     const body = JSON.stringify({
       "pinataOptions": {
         "cidVersion": 1
       },
       "pinataMetadata": {
-        "name": newPokemonCard.name + "2"
+        "name": newPokemonCard.name
       },
       "pinataContent": newPokemonCard
     });
-    debugger
     return this.http
       .post(url, body, {
         headers: {
@@ -36,10 +34,50 @@ export class PinataService {
       }).pipe(map((response: any) => {
         return {
           success: true,
-          pinataURL: "https://gateway.pinata.cloud/ipfs/" + response.data.IpfsHash
+          pinataURL: `${environment.ipfsBaseUrl}ipfs/` + response?.IpfsHash
         };
       })
         ,);
+  };
+
+
+  uploadFileToIPFS(image: File) {
+    const url = `${environment.pinataBaseUrl}pinning/pinFileToIPFS`;
+    let formData: any = new FormData();
+    formData.append('file', image, image.name);
+
+    const metadata = JSON.stringify({
+      name: image.name,
+    });
+    formData.append('pinataMetadata', metadata);
+
+    //pinataOptions are optional
+    const pinataOptions = JSON.stringify({
+      cidVersion: 1
+    });
+    formData.append('pinataOptions', pinataOptions);
+
+    return this.http
+      .post(url, formData, {
+        headers: {
+          'Authorization': `Bearer ${environment.PINATA_JWT}`
+        }
+      }).pipe(
+        map((response: any) => {
+          console.log({ response });
+          return {
+            success: true,
+            pinataURL: `${environment.ipfsBaseUrl}ipfs/` + response?.IpfsHash
+          };
+        })
+      );
+
 
   };
+
+
 }
+function trowhError(arg0: { success: boolean; message: any; }): any {
+  throw new Error('Function not implemented.');
+}
+
