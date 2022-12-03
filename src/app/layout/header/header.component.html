@@ -27,11 +27,11 @@
 
     <button
       mat-raised-button
-      [ngStyle]="this.wallet.web3 && { 'background-color': 'green' }"
+      [ngStyle]="this.wallet.web3Instance && { 'background-color': 'green' }"
       (click)="connectWallet()"
     >
       <mat-icon
-        *ngIf="this.wallet.web3"
+        *ngIf="this.wallet.web3Instance"
         class="wallet"
         aria-hidden="false"
         aria-label="Example user verified icon"
@@ -39,9 +39,9 @@
       </mat-icon>
       {{
         this.wallet.walletAddress
-          ? (this.wallet.walletAddress | slice: 0:3) +
+          ? (this.wallet.walletAddress | slice : 0 : 3) +
             "..." +
-            (this.wallet.walletAddress | slice: -4)
+            (this.wallet.walletAddress | slice : -4)
           : "Connect wallet"
       }}
     </button>
