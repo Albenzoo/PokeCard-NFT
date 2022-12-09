@@ -34,9 +34,16 @@
       [src]="
         pokemon.image
           ? renderImage(pokemon.image)
-          : '../../../assets/image/poke-card-default.gif'
+          : '../../../assets/image/loader/poke-card-default.gif'
       "
       [alt]="pokemon.name"
+      (load)="isImageLoaded = true"
+      [hidden]="isImageLoaded === false"
+    />
+    <img
+      *ngIf="!isImageLoaded"
+      class="main-image"
+      src="../../../assets/image/loader/poke-loader.gif"
     />
     <br />
     <!-- Border around the animal's information per requirement -->
@@ -116,7 +123,16 @@
           <span class="medium"
             >©1995, 96, 98 Nintendo Creatures, GAMEFREAK ©1999 Wizards</span
           >
-          <span class="strong">{{ pokemon.number || "xx/yy" }} ●</span>
+          <span class="strong"
+            >{{ pokemon.number || "xx/yy" }}
+            <img
+              class="rarity"
+              src="../../../assets/image/rarity/{{
+                pokemon.rarity || 'Common'
+              }}.png"
+              alt=""
+            />
+          </span>
         </li>
       </ul>
     </div>
