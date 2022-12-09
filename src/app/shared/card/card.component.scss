@@ -1,0 +1,502 @@
+@font-face {
+    font-family: "Gill Sans";
+    src: url("../../../assets/fonts/GillSans/GillSans-BoldItalic.woff2") format("woff2"),
+        url("../../../assets/fonts/GillSans/GillSans-BoldItalic.woff") format("woff");
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Gill Sans";
+    src: url("../../../assets/fonts/GillSans/GillSans-Bold.woff2") format("woff2"),
+        url("../../../assets/fonts/GillSans/GillSans-Bold.woff") format("woff");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Gill Sans";
+    src: url("../../../assets/fonts/GillSans/GillSans-HeavyItalic.woff2") format("woff2"),
+        url("../../../assets/fonts/GillSans/GillSans-HeavyItalic.woff") format("woff");
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Gill Sans";
+    src: url("../../../assets/fonts/GillSans/GillSans-CondensedBold.woff2") format("woff2"),
+        url("../../../assets/fonts/GillSans/GillSans-CondensedBold.woff") format("woff");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Gill Sans";
+    src: url("../../../assets/fonts/GillSans/GillSans-MediumItalic.woff2") format("woff2"),
+        url("../../../assets/fonts/GillSans/GillSans-MediumItalic.woff") format("woff");
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Gill Sans";
+    src: url("../../../assets/fonts/GillSans/GillSans-Italic.woff2") format("woff2"),
+        url("../../../assets/fonts/GillSans/GillSans-Italic.woff") format("woff");
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Gill Sans";
+    src: url("../../../assets/fonts/GillSans/GillSans-Medium.woff2") format("woff2"),
+        url("../../../assets/fonts/GillSans/GillSans-Medium.woff") format("woff");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Gill Sans";
+    src: url("../../../assets/fonts/GillSans/GillSans.woff2") format("woff2"),
+        url("../../../assets/fonts/GillSans/GillSans.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Gill Sans";
+    src: url("../../../assets/fonts/GillSans/GillSans-CondensedRegular.woff2") format("woff2"),
+        url("../../../assets/fonts/GillSans/GillSans-CondensedRegular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Gill Sans";
+    src: url("../../../assets/fonts/GillSans/GillSans-LightItalic.woff2") format("woff2"),
+        url("../../../assets/fonts/GillSans/GillSans-LightItalic.woff") format("woff");
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Gill Sans";
+    src: url("../../../assets/fonts/GillSans/GillSans-Light.woff2") format("woff2"),
+        url("../../../assets/fonts/GillSans/GillSans-Light.woff") format("woff");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Gill Sans";
+    src: url("../../../assets/fonts/GillSans/GillSans-Heavy.woff2") format("woff2"),
+        url("../../../assets/fonts/GillSans/GillSans-Heavy.woff") format("woff");
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* 
+
+
+NOTES
+"CARDS" DEVELOPED FOR EDUCATIONAL PURPOSES. COPYRIGHTS REMAIN PROPERTY OF THEIR ORIGINAL OWNERS.
+1. This version of the cards uses tables instead of lists, for attacks.
+2. The lists are at the end where the descriptions and copyrights are. Each list element is styled differently.
+3. All four cards are held in an invisible table for organization 
+4. I have it set up where CodePad imports Lato from Google Fonts using a link rel. Lato is a close clone of Gill Sans, which is the real Pokemon card font, but not open source. 
+5. Updated the card sizes after some feedback on the Udacity slack and forums - mah pictures were too big!
+*/
+
+/* OVERALL LOOK AND FEEL */
+
+/* ----- Background of entire page */
+
+/* 
+Use this to test positioning of tables and text. 
+Turn it on by removing comment marks to see 
+*/
+
+/*
+table, td, tr {
+  border: 1px solid magenta;
+}
+*/
+.card-container {
+    color: black;
+    font-family: "Gill Sans";
+    font-stretch: ultra-condensed;
+}
+
+/* ----- Backgrounds of different card types */
+div.blue {
+    /* blue card background - WATER TYPE */
+    background: linear-gradient(to bottom right, #d9e4ec, #adc1d1, #7d99af, #557792, #7d99af, #adc1d1);
+}
+div.yellow {
+    /* yellow card background - ELECTRIC TYPE */
+    background: linear-gradient(to bottom right, #ffffa4, #fff870, #fff200, #fff870, #ffffa4, #fff870);
+}
+div.redorange {
+    /* red and orange card background - FIRE TYPE */
+    background: linear-gradient(to bottom right, #ffbfba, #ff978f, #ff756b, #ff594c, #ff756b, #ff978f);
+}
+div.green {
+    /* green card background - GRASS TYPE */
+    background: linear-gradient(to bottom right, #aae5b7, #78cf8b, #4fb665, #319d49, #4fb665, #78cf8b);
+}
+div.unknown {
+    /* green card background - GRASS TYPE */
+    background: linear-gradient(to bottom right, #c2185b, #78cf8b);
+}
+
+/* ----- Size and shape of cards, and gold round border
+SERVES AS "Border around name, image and info" */
+div.nameimageinfo {
+    //width: 310px;
+    //height: 480px;
+    margin: 0px;
+    padding: 5px 10px 5px 10px;
+    border: 10px solid gold;
+    border-radius: 20px;
+}
+
+/* Border around animal's information to comply with requirements */
+div.infoonly {
+    //border: 1px dotted gray;
+    //height: 240px;
+    border-radius: 5px;
+    border-opacity: 50%;
+}
+
+/* Forcing tables to the same full width */
+table.nameheaders,
+table.stats,
+table.costs {
+    width: 310px;
+    vertical-align: center;
+}
+
+/* NAME AND BASIC STATS */
+
+/* ----- "Basic Pokemon" font styling */
+td.basic {
+    font-size: 9px;
+    font-weight: 600;
+    margin: 0px;
+    padding: 0px;
+}
+
+/* ----- Name of Pokemon font styling */
+td.nameofanimal {
+    font-weight: 700;
+    font-size: 20px;
+    margin: 0px;
+    padding: 0px;
+}
+
+/* ----- HP font styling */
+td.hp {
+    color: crimson;
+    font-size: 18px;
+    text-align: right;
+    font-weight: 600;
+    width: 50px;
+}
+
+/* ----- Type sign next to HP - OK to remove if replaced with image */
+.typesign {
+    font-size: 20px;
+    text-align: center;
+    width: 20px;
+}
+.energy-type {
+    width: 20px;
+}
+
+/* IMAGE AND DESCRIPTION */
+
+/* ----- Image border and drop shadow */
+img.main-image {
+    padding: 0px;
+    margin: 0px 0px 5px 0px;
+    border: 5px yellow outset;
+    box-shadow: 3px 3px 10px #000;
+    /* Ensure the images are always correct size
+ Note this will skew images of the wrong ratio */
+    width: 300px;
+    height: 190px;
+}
+
+/* Description font styling and gradient box
+this is DIRECTLY UNDER THE IMAGE */
+p.description {
+    /* This is skinnier than the image above it */
+    width: 250px; /* DO NOT REMOVE, HEATHER! */
+    padding: 2px 2px 2px 2px;
+    margin: 0px 0px 5px 30px;
+    background: linear-gradient(to right, goldenrod, yellow, goldenrod);
+    font-size: 10px;
+    font-style: italic;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* ATTACKS */
+
+/* ----- Attack Energy Cost - Stars/Energy Cards */
+td.energy {
+    width: 50px;
+    margin: 0px;
+    padding: 0px;
+    font-size: 18px;
+    text-align: center;
+}
+
+/* ----- Cell that holds Attack Name and Description */
+td.attackdesc {
+    margin: 5px;
+    padding: 5px;
+}
+
+/* ----- Cards with no Attack Description have the Attack Name centered
+This is an extra class for those only */
+
+td.attackdescCENTER {
+    text-align: center;
+    margin: 5px;
+    padding: 5px;
+}
+
+/* ----- Attack Name Only */
+span.label {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+/* ----- Attack Description */
+span.labeltext {
+    font-weight: 400;
+    font-size: 12px;
+}
+
+/* ----- Attack Damage */
+td.damage {
+    font-weight: 400;
+    font-size: 20px;
+    width: 25px;
+    text-align: center;
+}
+
+table.stats {
+    border-bottom: 1.5px solid black;
+}
+
+/* WEAKNESS / RESISTANCE / RETREAT */
+
+/* ----- Styling table overall */
+table.costs {
+    font-size: 10px;
+    text-align: center;
+}
+
+/* ----- Styling headers */
+tr.costheaders {
+    font-weight: 900;
+}
+
+/* ----- Styling icons - OK to remove if using images */
+tr.costicons {
+    font-size: 18px;
+    vertical-align: center;
+    box-align: center;
+}
+
+/* Comply with requirements by having no bullets */
+ul,
+li {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+/* BOTTOM DESCRIPTION */
+
+/* The bottom description and the copyrights
+are two bullets in a list with different classes
+to style them differently */
+
+/* Bottom of card just above copyrights */
+li.italicize {
+    font-style: italic;
+    font-weight: 600;
+    font-size: 10px;
+    border: 1px ridge gold;
+    border-radius: 2px;
+    //margin: 5px 0px 0px 0px;
+    //padding: 5px 5px 5px 5px;
+    width: 298px;
+    /* Remove comment marks to test size */
+    /* border: 1px solid magenta; */
+}
+
+/* COPYRIGHTS */
+li.copyrights {
+    font-size: 7.2px;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+    width: 308px;
+    /* Remove comment marks to test size */
+    /* border: 1px solid magenta; */
+}
+
+/* Copyright font changes along the line, and I love classes apparently */
+span.medium {
+    font-weight: 500;
+}
+
+span.strong {
+    font-weight: 700;
+}
+
+/* Below is a MODIFIED Reset CSS file
+I was experiencing many issues between browsers with my code's sizing
+Code immediately below is public domain and allows for my work to show as intended */
+
+/* I have modified it to remove styles that I used so they will display properly */
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+fieldset,
+form,
+label,
+legend,
+caption,
+tbody,
+tfoot,
+thead,
+th,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+* {
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol {
+    list-style: none;
+}
+blockquote,
+q {
+    quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: "";
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
