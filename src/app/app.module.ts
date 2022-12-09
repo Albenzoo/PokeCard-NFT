@@ -14,6 +14,10 @@ import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { CreateNftComponent } from './pages/create-nft/create-nft.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { CardComponent } from './shared/card/card.component'
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -25,6 +29,7 @@ const routes: Routes = [
     HomePageComponent,
     HeaderComponent,
     CreateNftComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +40,9 @@ const routes: Routes = [
     MatIconModule,
     MatButtonModule,
     MatCardModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatInputModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
   ],
@@ -42,4 +50,4 @@ const routes: Routes = [
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

@@ -1,21 +1,207 @@
-<input
-  type="file"
-  class="file-input"
-  (change)="onFileSelected($event)"
-  #fileUpload
-/>
+<mat-card id="container">
+  <form id="card-form">
+    <h2>Main info</h2>
 
-<div class="file-upload">
-  {{ imageFile.name || "No file uploaded yet." }}
+    <div class="input-group">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input
+          [(ngModel)]="customCard.name"
+          name="name"
+          matInput
+          placeholder="Ex. Charmander"
+        />
+      </mat-form-field>
 
-  <button
-    mat-mini-fab
-    color="primary"
-    class="upload-btn"
-    (click)="fileUpload.click()"
-  >
-    <mat-icon>attach_file</mat-icon>
-  </button>
-</div>
+      <mat-form-field appearance="outline">
+        <mat-label>HP</mat-label>
+        <input
+          [(ngModel)]="customCard.hp"
+          name="hp"
+          matInput
+          placeholder="50"
+        />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
 
-<input type="button" value="Carica carta" (click)="uploadCard()" />
+      <div class="load-image-container">
+        <input
+          type="file"
+          class="file-input"
+          (change)="onFileSelected($event)"
+          #fileUpload
+        />
+
+        <div class="file-upload">
+          {{ imageLabel }}
+
+          <button
+            mat-mini-fab
+            color="accent"
+            class="upload-btn"
+            (click)="fileUpload.click()"
+          >
+            <mat-icon>attach_file</mat-icon>
+          </button>
+        </div>
+      </div>
+      <mat-form-field appearance="outline">
+        <mat-label>Length</mat-label>
+        <input
+          [(ngModel)]="customCard.length"
+          name="length"
+          matInput
+          placeholder="EX. 2.65"
+        />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Weight</mat-label>
+        <input
+          [(ngModel)]="customCard.weight"
+          name="weight"
+          matInput
+          placeholder="50"
+        />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Type</mat-label>
+        <input
+          [(ngModel)]="customCard.type"
+          name="type"
+          matInput
+          placeholder="Ex. Lizard"
+        />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Energy Type</mat-label>
+        <input
+          [(ngModel)]="customCard.energy_type"
+          name="energy_type"
+          matInput
+          placeholder="Ex. Fire"
+        />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Rarity</mat-label>
+        <input
+          [(ngModel)]="customCard.rarity"
+          name="rarity"
+          matInput
+          placeholder="Ex. Rare"
+        />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <h2>Attack list</h2>
+    <div class="input-group">
+      <div *ngFor="let attack of attackList; let i = index">
+        <mat-form-field appearance="outline">
+          <mat-label>Cost</mat-label>
+          <input
+            [(ngModel)]="attack.cost"
+            name="attackCost{{ i }}"
+            matInput
+            placeholder="array o ftype"
+          />
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Attack name</mat-label>
+          <input
+            [(ngModel)]="attack.name"
+            name="attackName{{ i }}"
+            matInput
+            placeholder="Ex. Fireball"
+          />
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Damage</mat-label>
+          <input
+            [(ngModel)]="attack.damage"
+            name="attackDamage{{ i }}"
+            matInput
+            placeholder="Ex. 10"
+          />
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+
+        <button mat-mini-fab color="accent">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <h2>Other info</h2>
+    <div class="input-group">
+      <mat-form-field appearance="outline">
+        <mat-label>Level</mat-label>
+        <input
+          [(ngModel)]="customCard.level"
+          name="level"
+          matInput
+          placeholder="Ex. 90"
+        />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Weakness</mat-label>
+        <input matInput placeholder="Ex. Array of type" />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Resistance</mat-label>
+        <input matInput placeholder="Ex. Array of type" />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>retreatCost</mat-label>
+        <input matInput placeholder="Ex. Array of type" />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Artist</mat-label>
+        <input
+          [(ngModel)]="customCard.artist"
+          name="artist"
+          matInput
+          placeholder="Ex. Arita"
+        />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Card number</mat-label>
+        <input
+          [(ngModel)]="customCard.number"
+          name="number"
+          matInput
+          placeholder="Ex. 46/102"
+        />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <div id="card-preview">
+    <poke-card [pokemon]="customCard"></poke-card>
+    <button mat-raised-button color="primary" (click)="uploadCard()">
+      Create card NFT
+    </button>
+  </div>
+</mat-card>
