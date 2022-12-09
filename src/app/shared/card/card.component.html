@@ -1,0 +1,124 @@
+<div class="card-container">
+  <div
+    class="nameimageinfo"
+    [ngClass]="{
+      blue: pokemon.energy_type == 'Water',
+      yellow: pokemon.energy_type == 'Lightning',
+      redorange: pokemon.energy_type == 'Fire',
+      green: pokemon.energy_type == 'Grass',
+      unknown: !pokemon.energy_type
+    }"
+  >
+    <!-- Name and basic stats -->
+    <table class="nameheaders">
+      <tr>
+        <td class="basic" colspan="3">Basic Pokémon</td>
+      </tr>
+      <tr>
+        <td class="nameofanimal">{{ pokemon.name || "Name" }}</td>
+        <td class="hp">{{ pokemon.hp || "xx" }} HP</td>
+        <td class="typesign">
+          <img
+            class="energy-type"
+            src="../../../assets/image/types/{{
+              pokemon.energy_type || 'Unknown'
+            }}.png"
+            alt=""
+          />
+        </td>
+      </tr>
+    </table>
+    <!-- Image and description -->
+    <img
+      class="main-image"
+      [src]="
+        pokemon.image
+          ? renderImage(pokemon.image)
+          : '../../../assets/image/poke-card-default.gif'
+      "
+      [alt]="pokemon.name"
+    />
+    <br />
+    <!-- Border around the animal's information per requirement -->
+    <div class="infoonly">
+      <!-- "interesting fact" -->
+      <p class="description">
+        {{ pokemon.type || "type" }} Pokémon. Length:
+        {{ pokemon.length || "length" }} m, Weight:
+        {{ pokemon.weight || "weight" }} Kg.
+      </p>
+      <!-- Attacks -->
+      <table class="stats">
+        <tr>
+          <td class="energy">
+            <img
+              class="energy-type"
+              src="../../../assets/image/types/{{
+                pokemon.attack_list[0].cost || 'Unknown'
+              }}.png"
+              alt=""
+            />
+          </td>
+          <td class="attackdesc">
+            <span class="label">
+              {{ pokemon.attack_list[0].name || "attack_name" }}</span
+            >
+            <span class="labeltext">{{
+              pokemon.attack_list[0].text || "text"
+            }}</span>
+          </td>
+          <td class="damage">{{ pokemon.attack_list[0].damage || "Xx" }}</td>
+        </tr>
+      </table>
+      <table class="stats">
+        <tr>
+          <td class="energy">
+            <img
+              class="energy-type"
+              src="../../../assets/image/types/{{
+                pokemon.energy_type || 'Unknown'
+              }}.png"
+              alt=""
+            />
+          </td>
+          <td class="attackdesc">
+            <span class="label">Withdraw</span>
+            <span class="labeltext"
+              >Flip a coin. If heads, prevent all damage done to Squirtle during
+              your opponent's next turn.
+              <em>(Any other effects of attacks still happen.)</em></span
+            >
+          </td>
+          <td class="damage">10</td>
+        </tr>
+      </table>
+      <table class="costs">
+        <tr class="costheaders">
+          <td>weakness</td>
+          <td>resistance</td>
+          <td>retreat cost</td>
+        </tr>
+        <tr class="costicons">
+          <td>☻</td>
+          <td></td>
+          <td>☻</td>
+        </tr>
+      </table>
+      <!-- Bottom Description -->
+      <!-- This is the list for the purposes of following the exercise instructions to have a list :D -->
+      <ul>
+        <!-- "interesting fact" -->
+        <li class="italicize">
+          {{ pokemon.description || "Description" }}
+        </li>
+        <li class="copyrights">
+          <span class="strong">Illus {{ pokemon.artist || "artist" }}</span>
+          <span class="medium"
+            >©1995, 96, 98 Nintendo Creatures, GAMEFREAK ©1999 Wizards</span
+          >
+          <span class="strong">{{ pokemon.number || "xx/yy" }} ●</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
