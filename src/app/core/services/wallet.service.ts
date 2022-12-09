@@ -11,12 +11,13 @@ import { url } from 'inspector';
 import { map, Observable } from 'rxjs';
 import { createAlchemyWeb3 } from '@alch/alchemy-web3';
 import { HttpClient } from '@angular/common/http';
+import { UtilsService } from './utils.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WalletService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private utilsService: UtilsService) { }
 
   web3Instance: any = new Web3(window.ethereum);
   web3 = createAlchemyWeb3(
@@ -62,8 +63,8 @@ export class WalletService {
         ,);
   }
   storeDataFromURI(url: string): void {
-    url = url.replace(':/', '');
-    this.getNftInfo(environment.ipfsBaseUrl + url).subscribe({
+    const parseUrl = this.utilsService.parseIpfsUrl(url);
+    this.getNftInfo(parseUrl).subscribe({
       next: (data: any) => {
         console.log({ data });
         this.allNfts.push(data);
