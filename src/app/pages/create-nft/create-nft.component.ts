@@ -19,7 +19,7 @@ export class CreateNftComponent implements OnInit {
   imageFile: File = <File>{};
   customCard: Card = <Card>{};
   attackList: Attack[] = [{ cost: ["Fire"] }];
-  imageLabel: string = "Load card image ->";
+  imageLabel: string = "Load card image (16 : 11) ->";
   imagePreview: any;
 
   eventsImageLoaded: Subject<void> = new Subject<void>();
@@ -33,7 +33,8 @@ export class CreateNftComponent implements OnInit {
 
   ngOnInit() {
 
-    /* this.customCard = {
+    //this.customCard = { "name": "Charmander", "hp": 50, "image": "ipfs://bafybeiceeiwbb6pmtqnscvp2moh2krpxuiqm3fplsnozxybw5ld4j75toe", "length": 2, "weight": 19, "type": "Lizard", "energy_type": "Fire", "rarity": "Common", "attack_list": [{ "cost": ["Colorless"], "name": "Scratch", "damage": 10 }, { "cost": ["Fire", "Colorless"], "name": "Ember", "text": "Discard I Fire Energy card attached to Charmander in order to use this attack.", "damage": 30 }], "description": "Obviously prefers hot places. If it gets caught in the rain, steam is said to spout from the tip of his tail.", "level": 10, "weaknesses": ["Water"], "resistance": [], "retreatCost": ["Colorless"], "artist": "Mitsuhiro Arita", "number": "46/102" };
+    this.customCard = {
       name: "Charmander",
       hp: 50,
       image: "",
@@ -64,7 +65,7 @@ export class CreateNftComponent implements OnInit {
       retreatCost: ["Colorless"],
       artist: 'Mitsuhiro Arita',
       number: '46/102'
-    }; */
+    };
 
   }
   emitEventImageLoadedToCard(myImage: any) {
