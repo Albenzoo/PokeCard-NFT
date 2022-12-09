@@ -18,10 +18,6 @@ Spesso provando a recuperare tramite il link ipfs da pinata ritorna errore di CO
 https://ipfs.github.io/public-gateway-checker/
 qui ci sono tutti i siti che possono recuperare file caricati su ipfs
 
-- finito di creare il bottone per caricare immagine
-- chiamata api pinata per caricare immagine card
-- concatenare le chiamate (immagine + json) per la creazione della card su pinata
-- creare form creazione card
 - creare card interattiva al compilamento del form
 - visualizzare le card nella home page
 - fare pagina dettaglio card
