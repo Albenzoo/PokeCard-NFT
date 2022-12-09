@@ -53,11 +53,6 @@ export class WalletService {
   getNftInfo(url: string): Observable<any> {
     return this.http
       .get(url).pipe(map((response: any) => {
-        // modify the response  data
-        if (response.image) {
-          response.image = response.image.replace('ipfs://', environment.ipfsBaseUrl + 'ipfs/');
-        }
-        // return the modified data
         return response;
       })
         ,);
