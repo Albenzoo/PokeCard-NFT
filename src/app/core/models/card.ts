@@ -1,8 +1,8 @@
-type Energy = 'Fire' | 'Fighting' | 'Dragon' | 'Lighting' | 'Grass' | 'Water' | 'Fairy' | 'Psychic' | 'Darkness' | 'Metal' | 'Colorless';
+type Energy = 'Fire' | 'Fighting' | 'Lightning' | 'Grass' | 'Water' | 'Psychic' | 'Darkness' | 'Metal' | 'Colorless';
 type Rarity = 'Common' | 'Uncommon' | 'Rare' | 'Promo';
 export interface Card {
   attributes?: any[];
-  image: string;
+  image: File | string;
 
 
   name: string; //The name of the card
@@ -10,22 +10,22 @@ export interface Card {
   length: number;
   weight: number;
   type: string; //seed,mouse,ecc
-  energy_type: Energy; //The energy types for a card, such as Fire, Fighting, Dragon, Lighting, Grass, Water, Fairy, Psychic, Darkness, Metal, and Colorless
-  rarity: Rarity;
+  energy_type: Energy; //The energy types for a card, such as Fire, Fighting, Dragon, Lightning, Grass, Water, Fairy, Psychic, Darkness, Metal, and Colorless
+  rarity: Rarity; //Common, Uncommon, Rare, Special
   attack_list: Attack[]; //One or more attacks for a given car
-  weaknesses: (EnergyValue | Energy)[]; //One or more weaknesses for a given card
-  resistance: (EnergyValue | Energy)[]; //One or more resistances for a given card
-  retreatCost: (EnergyValue | Energy)[]; //A list of costs it takes to retreat and return the card to your bench
+  weaknesses?: (EnergyValue | Energy)[]; //One or more weaknesses for a given card
+  resistance?: (EnergyValue | Energy)[]; //One or more resistances for a given card
+  retreatCost?: (EnergyValue | Energy)[]; //A list of costs it takes to retreat and return the card to your bench
   description: string;
-  level?: number;
+  level: number;
   artist: string; //The artist of the card
   number: string; //The nuber of the card
 
 }
 
 export interface Attack {
-  cost: Energy[]; //The cost of the attack represented by a list of energy types
-  name: string; //The name of the attack
+  cost?: Energy[]; //The cost of the attack represented by a list of energy types
+  name?: string; //The name of the attack
   text?: string; //The text or description associated with the attack
   damage?: number; //The damage amount of the attack
 }
