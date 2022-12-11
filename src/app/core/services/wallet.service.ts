@@ -85,7 +85,17 @@ export class WalletService {
 
   }
 
+
+  async checkWalletConnection() {
+    if (!this.walletAddress) {
+      return await this.connect();
+    }
+    return true;
+  }
+
   public async mintNFT(tokenURI: string) {
+    const isWalletConnected = await this.checkWalletConnection();
+    if (!isWalletConnected) return;
     const nonce = await this.web3.eth.getTransactionCount(environment.PUBLIC_KEY, 'latest'); //get latest nonce
 
     const inputPrice: number = 0.02;
@@ -102,16 +112,28 @@ export class WalletService {
     //return;
     //the transaction
     const tx = {
-      from: environment.PUBLIC_KEY,
+      from: this.walletAddress,
       to: environment.contractAddress,
       nonce: nonce,
       gas: 500000,
       data: this.nftContract.methods.createToken(tokenURI, priceBN).encodeABI(),
       value: feePrice,
     };
+    const transaction = this.web3.eth.sendTransaction(tx)
+      .then((response) => {
+        console.log({ response }, 'The hash of your transaction is: ',
+          response.transactionHash,
+          "\nCheck Alchemy's Mempool to view the status of your transaction!");
+        return response;
+      }
+      )
+      .catch((error) => {
+        console.error(error);
+        return error
+      });
 
-    const signPromise = this.web3.eth.accounts
-      .signTransaction(tx, environment.PRIVATE_KEY)
+    /* const signPromise = this.web3.eth.accounts
+      .signTransaction(tx, tx.from)
       .then((signedTx: any) => {
         this.web3.eth.sendSignedTransaction(
           signedTx.rawTransaction,
@@ -133,16 +155,24 @@ export class WalletService {
       })
       .catch((err) => {
         console.log(' Promise failed:', err);
-      });
+      }); */
+  }
+  test() {
+    if (window.ethereum) { return true } else { return false }
   }
 
-  connect(): boolean {
+  async connect() {
     if (window.ethereum) {
       console.log('Metamask is installed!');
-      window.ethereum
-        .request({
-          method: 'eth_requestAccounts',
-        })
+      const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+      if (chainId !== '0x5') {
+        //alert('Incorrect network! Switch your metamask network to Rinkeby');
+        await window.ethereum.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{ chainId: '0x5' }],
+        });
+      }
+      const connection = await window.ethereum.request({ method: 'eth_requestAccounts' })
         .then((accountsAddress: string) => {
           this.walletAddress = accountsAddress[0];
           console.log(this.walletAddress);
@@ -156,12 +186,13 @@ export class WalletService {
           console.log('Somethings goes wrong...retry');
           return false;
         });
+      return connection;
+
     } else {
       window.alert(
         'Non-Ethereum browser detected. You Should consider using MetaMask!'
       );
       return false;
     }
-    return false;
   }
 }
