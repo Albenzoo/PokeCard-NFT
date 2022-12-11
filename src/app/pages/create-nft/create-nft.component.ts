@@ -20,8 +20,8 @@ export class CreateNftComponent implements OnInit {
   customCard: Card = <Card>{};
   attackList: Attack[] = [{ cost: ["Fire"] }];
   imageLabel: string = "Load card image (16 : 11) ->";
-  imagePreview: any;
-
+  imagePreview: any = "";
+  imageLoadedSubject: Subject<any> = new Subject<any>();
   eventsImageLoaded: Subject<void> = new Subject<void>();
 
 
@@ -80,10 +80,13 @@ export class CreateNftComponent implements OnInit {
         return;
       }
 
+
       const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result;
+      };
       reader.readAsDataURL(file);
-      reader.onload = (event: any) => this.imagePreview = event.target.result;
-      this.emitEventImageLoadedToCard(file)
+
       this.customCard.image = file;
       this.imageLabel = this.customCard.image.name;
     }
