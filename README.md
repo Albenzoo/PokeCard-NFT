@@ -18,7 +18,7 @@ Spesso provando a recuperare tramite il link ipfs da pinata ritorna errore di CO
 https://ipfs.github.io/public-gateway-checker/
 qui ci sono tutti i siti che possono recuperare file caricati su ipfs
 
+- completare componente energy chooser
 - creare card interattiva al compilamento del form
-- visualizzare le card nella home page
 - fare pagina dettaglio card
 - aggiungere nella pagina dettaglio la funzione per acquistare card
