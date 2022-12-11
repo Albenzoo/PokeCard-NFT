@@ -15,6 +15,9 @@ export class HomePageComponent implements OnInit {
   constructor(public wallet: WalletService, public apiService: ApiService) { }
 
   ngOnInit(): void {
+    if (this.wallet.allNfts.length == 0) {
+      this.wallet.getAllNFTs();
+    }
     /*     const nftContract = new this.wallet.web3.eth.Contract(
           this.wallet.contractInfo.contractABI,
           this.wallet.contractInfo.contractAddress
