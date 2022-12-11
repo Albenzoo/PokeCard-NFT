@@ -1,4 +1,4 @@
-<div class="card-container">
+<div class="card-container" [ngClass]="mode">
   <div
     class="nameimageinfo"
     [ngClass]="{
@@ -32,8 +32,8 @@
     <img
       class="main-image"
       [src]="
-        pokemon.image
-          ? renderImage(pokemon.image)
+        imagePreview
+          ? imagePreview
           : '../../../assets/image/loader/poke-card-default.gif'
       "
       [alt]="pokemon.name"
