@@ -17,7 +17,8 @@ import { CreateNftComponent } from './pages/create-nft/create-nft.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { CardComponent } from './shared/card/card.component'
+import { CardComponent } from './shared/card/card.component';
+import { EnergyChooserComponent } from './shared/energy-chooser/energy-chooser.component'
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -30,6 +31,7 @@ const routes: Routes = [
     HeaderComponent,
     CreateNftComponent,
     CardComponent,
+    EnergyChooserComponent,
   ],
   imports: [
     BrowserModule,
