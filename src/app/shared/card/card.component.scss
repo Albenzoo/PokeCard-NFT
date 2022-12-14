@@ -508,3 +508,13 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+
+.energy-footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    column-gap: 0.1rem;
+}
