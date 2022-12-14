@@ -19,7 +19,6 @@ import { runInThisContext } from 'vm';
 export class CreateNftComponent implements OnInit {
   imageFile: File = <File>{};
   customCard: Card = <Card>{};
-  attackList: Attack[] = [{ cost: ["Fire"] }];
   imageLabel: string = "Load image";
   imagePreview: any = "";
   imageLoadedSubject: Subject<any> = new Subject<any>();
@@ -46,17 +45,17 @@ export class CreateNftComponent implements OnInit {
       rarity: 'Common',
       attack_list: [
         {
-          cost: ["Colorless"],
-          name: "Scratch",
-          text: "Discard I Fire Energy card attached to Charmander in order to use this attack.",
+          cost: [],
+          name: "",
+          text: "",
 
-          damage: 50
+          damage: undefined
         },
         {
-          cost: ["Fire", "Colorless"],
-          name: "Ember",
-          text: "Discard I Fire Energy card attached to Charmander in order to use this attack.",
-          damage: 30
+          cost: [],
+          name: "",
+          text: "",
+          damage: undefined
         }
       ],
       description: 'Obviously prefers hot places. If it gets caught in the rain, steam is said to spout from the tip of his tail.',
@@ -105,6 +104,16 @@ export class CreateNftComponent implements OnInit {
   onAddRetreatCost(energy: Energy) {
     this.customCard.retreatCost.push(energy);
   }
+  onAddAttackCost(energy: Energy, index: number) {
+    this.customCard.attack_list[index].cost.push(energy);
+    console.log("costo:", this.customCard.attack_list);
+  }
+  onRemoveAttackCost(energy: Energy, index: number) {
+    const found = this.customCard.attack_list[index].cost.indexOf(energy, 0);
+    if (found > -1) {
+      this.customCard.attack_list[index].cost.splice(found, 1);
+    }
+  }
 
 
 
@@ -128,7 +137,6 @@ export class CreateNftComponent implements OnInit {
     }
   }
   uploadCard() {
-    this.customCard.attack_list = this.attackList;
     this.customCard.hp = Number(this.customCard.hp);
     this.customCard.level = Number(this.customCard.level);
     console.log("customCard:", this.customCard);
