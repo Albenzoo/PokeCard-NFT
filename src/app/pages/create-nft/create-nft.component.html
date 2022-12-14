@@ -11,6 +11,7 @@
           matInput
           placeholder="Ex. Charmander"
         />
+        <mat-icon matSuffix>badge</mat-icon>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -21,7 +22,7 @@
           matInput
           placeholder="50"
         />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-icon matSuffix>health_and_safety</mat-icon>
       </mat-form-field>
 
       <div class="load-image-container">
@@ -31,19 +32,17 @@
           (change)="onFileSelected($event)"
           #fileUpload
         />
+        <mat-card class="image-card" (click)="fileUpload.click()">
+          <div class="file-upload">
+            {{ imageLabel }}
 
-        <div class="file-upload">
-          {{ imageLabel }}
-
-          <button
-            mat-mini-fab
-            color="accent"
-            class="upload-btn"
-            (click)="fileUpload.click()"
-          >
-            <mat-icon>attach_file</mat-icon>
-          </button>
-        </div>
+            <button mat-mini-fab color="accent" class="upload-btn">
+              <mat-icon
+                >{{ customCard.image ? "image" : "add_photo_alternate" }}
+              </mat-icon>
+            </button>
+          </div>
+        </mat-card>
       </div>
       <mat-form-field appearance="outline">
         <mat-label>Length</mat-label>
@@ -53,7 +52,7 @@
           matInput
           placeholder="EX. 2.65"
         />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-icon matSuffix>straighten</mat-icon>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -64,7 +63,7 @@
           matInput
           placeholder="50"
         />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-icon matSuffix>scale</mat-icon>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -75,10 +74,17 @@
           matInput
           placeholder="Ex. Lizard"
         />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-icon matSuffix
+          ><span class="material-symbols-outlined"> pets </span></mat-icon
+        >
       </mat-form-field>
+      <app-energy-chooser
+        mode="single"
+        (selectedSingleEnergy)="onSelectedSingleEnergy($event)"
+        chooserLabel="Energy Type"
+      ></app-energy-chooser>
 
-      <mat-form-field appearance="outline">
+      <!-- <mat-form-field appearance="outline">
         <mat-label>Energy Type</mat-label>
         <input
           [(ngModel)]="customCard.energy_type"
@@ -87,33 +93,30 @@
           placeholder="Ex. Fire"
         />
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-      </mat-form-field>
+      </mat-form-field> -->
 
-      <mat-form-field appearance="outline">
-        <mat-label>Rarity</mat-label>
-        <input
+      <p>
+        Rarity:
+        <mat-button-toggle-group
           [(ngModel)]="customCard.rarity"
           name="rarity"
-          matInput
-          placeholder="Ex. Rare"
-        />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-      </mat-form-field>
+          aria-label="Rarity"
+        >
+          <mat-button-toggle value="Common">Common</mat-button-toggle>
+          <mat-button-toggle value="Uncommon">Uncommon</mat-button-toggle>
+          <mat-button-toggle value="Rare">Rare</mat-button-toggle>
+        </mat-button-toggle-group>
+      </p>
     </div>
 
     <h2>Attack list</h2>
     <div class="input-group">
       <div *ngFor="let attack of attackList; let i = index">
-        <mat-form-field appearance="outline">
-          <mat-label>Cost</mat-label>
-          <input
-            [(ngModel)]="attack.cost"
-            name="attackCost{{ i }}"
-            matInput
-            placeholder="array o ftype"
-          />
-          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        </mat-form-field>
+        <app-energy-chooser
+          mode="multi"
+          (selectedSingleEnergy)="onSelectedSingleEnergy($event)"
+          listLabel="Cost"
+        ></app-energy-chooser>
 
         <mat-form-field appearance="outline">
           <mat-label>Attack name</mat-label>
@@ -123,7 +126,7 @@
             matInput
             placeholder="Ex. Fireball"
           />
-          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-icon matSuffix>drive_file_rename_outline</mat-icon>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -134,7 +137,11 @@
             matInput
             placeholder="Ex. 10"
           />
-          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-icon matSuffix
+            ><span class="material-symbols-outlined">
+              sports_martial_arts
+            </span></mat-icon
+          >
         </mat-form-field>
 
         <button mat-mini-fab color="accent">
@@ -156,23 +163,26 @@
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Weakness</mat-label>
-        <input matInput placeholder="Ex. Array of type" />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-      </mat-form-field>
+      <app-energy-chooser
+        mode="multi"
+        listLabel="Weakness"
+        (selectedMultipleEnergy)="onAddWeakness($event)"
+        (deleteEnergy)="onRemoveWeakness($event)"
+      ></app-energy-chooser>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Resistance</mat-label>
-        <input matInput placeholder="Ex. Array of type" />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-      </mat-form-field>
+      <app-energy-chooser
+        mode="multi"
+        (selectedMultipleEnergy)="onAddResistance($event)"
+        (deleteEnergy)="onRemoveResistance($event)"
+        listLabel="Resistance"
+      ></app-energy-chooser>
 
-      <mat-form-field appearance="outline">
-        <mat-label>retreatCost</mat-label>
-        <input matInput placeholder="Ex. Array of type" />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-      </mat-form-field>
+      <app-energy-chooser
+        mode="multi"
+        (selectedMultipleEnergy)="onAddRetreatCost($event)"
+        (deleteEnergy)="onRemoveRetreatCost($event)"
+        listLabel="Retreat Cost"
+      ></app-energy-chooser>
 
       <mat-form-field appearance="outline">
         <mat-label>Artist</mat-label>
@@ -182,7 +192,9 @@
           matInput
           placeholder="Ex. Arita"
         />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-icon matSuffix
+          ><span class="material-symbols-outlined"> brush </span></mat-icon
+        >
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -193,7 +205,7 @@
           matInput
           placeholder="Ex. 46/102"
         />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-icon matSuffix>confirmation_number</mat-icon>
       </mat-form-field>
     </div>
   </form>
