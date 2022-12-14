@@ -106,9 +106,38 @@
           <td>retreat cost</td>
         </tr>
         <tr class="costicons">
-          <td>☻</td>
-          <td></td>
-          <td>☻</td>
+          <td>
+            <ng-container *ngFor="let weakness of pokemon.weaknesses">
+              <img
+                class="energy-type"
+                src="../../../assets/image/types/{{
+                  weakness || 'Unknown'
+                }}.png"
+                alt=""
+              />
+            </ng-container>
+          </td>
+          <td>
+            <ng-container
+              *ngFor="let res of pokemon.resistance"
+              class="energy-footer"
+            >
+              <img
+                class="energy-type"
+                src="../../../assets/image/types/{{ res || 'Unknown' }}.png"
+                alt="resistance"
+              />
+            </ng-container>
+          </td>
+          <td>
+            <ng-container *ngFor="let retCost of pokemon.retreatCost">
+              <img
+                class="energy-type"
+                src="../../../assets/image/types/{{ retCost || 'Unknown' }}.png"
+                alt="retreat Cost"
+              />
+            </ng-container>
+          </td>
         </tr>
       </table>
       <!-- Bottom Description -->
