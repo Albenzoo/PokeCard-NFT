@@ -1,1 +1,45 @@
-<p>energy-chooser works!</p>
+<div [ngClass]="mode == 'multi' ? 'chooser-container' : ''">
+  <mat-form-field
+    class="chip-energy-field"
+    appearance="fill"
+    *ngIf="mode == 'multi'"
+  >
+    <mat-label>{{ listLabel }}</mat-label>
+
+    <mat-chip-list aria-label="Energy selection">
+      <mat-chip
+        *ngFor="let energy of selectedEnergies"
+        (removed)="removeEnergy(energy)"
+      >
+        <img
+          matChipAvatar
+          src="../../../assets/image/types/{{ energy || 'Unknown' }}.png"
+          alt="Photo of a Shiba Inu"
+        />
+        {{ energy }}
+        <button matChipRemove>
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip>
+    </mat-chip-list>
+  </mat-form-field>
+
+  <div
+    class="energy-wrapper"
+    [ngClass]="mode == 'multi' ? 'position-multi-correction' : ''"
+  >
+    <mat-label id="label">{{ chooserLabel }}</mat-label>
+
+    <div class="energy-container">
+      <ng-container *ngFor="let energy of energyTypes">
+        <img
+          class="energy"
+          src="../../../assets/image/types/{{ energy || 'Unknown' }}.png"
+          alt=""
+          (click)="addEnergy(energy)"
+          [ngClass]="singleEnergy == energy ? 'selected' : ''"
+        />
+      </ng-container>
+    </div>
+  </div>
+</div>
