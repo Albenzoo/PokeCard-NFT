@@ -24,8 +24,8 @@ export interface Card {
 }
 
 export interface Attack {
-  cost?: Energy[]; //The cost of the attack represented by a list of energy types
-  name?: string; //The name of the attack
+  cost: Energy[]; //The cost of the attack represented by a list of energy types
+  name: string; //The name of the attack
   text?: string; //The text or description associated with the attack
   damage?: number; //The damage amount of the attack
 }
