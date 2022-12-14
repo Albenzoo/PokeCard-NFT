@@ -1,4 +1,4 @@
-type Energy = 'Fire' | 'Fighting' | 'Lightning' | 'Grass' | 'Water' | 'Psychic' | 'Darkness' | 'Metal' | 'Colorless';
+export type Energy = 'Fire' | 'Fighting' | 'Lightning' | 'Grass' | 'Water' | 'Psychic' | 'Darkness' | 'Metal' | 'Colorless' | null;
 type Rarity = 'Common' | 'Uncommon' | 'Rare' | 'Promo';
 export interface Card {
   attributes?: any[];
@@ -13,9 +13,9 @@ export interface Card {
   energy_type: Energy; //The energy types for a card, such as Fire, Fighting, Dragon, Lightning, Grass, Water, Fairy, Psychic, Darkness, Metal, and Colorless
   rarity: Rarity; //Common, Uncommon, Rare, Special
   attack_list: Attack[]; //One or more attacks for a given car
-  weaknesses?: (EnergyValue | Energy)[]; //One or more weaknesses for a given card
-  resistance?: (EnergyValue | Energy)[]; //One or more resistances for a given card
-  retreatCost?: (EnergyValue | Energy)[]; //A list of costs it takes to retreat and return the card to your bench
+  weaknesses: Energy[]; //One or more weaknesses for a given card
+  resistance: (EnergyValue | Energy)[]; //One or more resistances for a given card
+  retreatCost: (EnergyValue | Energy)[]; //A list of costs it takes to retreat and return the card to your bench
   description: string;
   level: number;
   artist: string; //The artist of the card
