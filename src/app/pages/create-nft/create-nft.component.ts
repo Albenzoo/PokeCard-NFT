@@ -3,8 +3,9 @@ import { AsyncSubject, BehaviorSubject, connect, connectable, filter, fromEvent,
 import { webSocket } from 'rxjs/webSocket';
 import { ajax } from "rxjs/ajax";
 import { ApiService } from 'src/app/core/services/api.service';
-import { Card, Attack } from 'src/app/core/models/card';
+import { Card, Attack, Energy } from 'src/app/core/models/card';
 import { AnyForUntypedForms } from '@angular/forms';
+import { runInThisContext } from 'vm';
 
 
 
@@ -19,7 +20,7 @@ export class CreateNftComponent implements OnInit {
   imageFile: File = <File>{};
   customCard: Card = <Card>{};
   attackList: Attack[] = [{ cost: ["Fire"] }];
-  imageLabel: string = "Load card image (16 : 11) ->";
+  imageLabel: string = "Load image";
   imagePreview: any = "";
   imageLoadedSubject: Subject<any> = new Subject<any>();
   eventsImageLoaded: Subject<void> = new Subject<void>();
@@ -60,9 +61,9 @@ export class CreateNftComponent implements OnInit {
       ],
       description: 'Obviously prefers hot places. If it gets caught in the rain, steam is said to spout from the tip of his tail.',
       level: 10,
-      weaknesses: ["Water"],
+      weaknesses: [],
       resistance: [],
-      retreatCost: ["Colorless"],
+      retreatCost: [],
       artist: 'Mitsuhiro Arita',
       number: '46/102'
     };
@@ -71,6 +72,41 @@ export class CreateNftComponent implements OnInit {
   emitEventImageLoadedToCard(myImage: any) {
     this.eventsImageLoaded.next(myImage);
   }
+
+  onSelectedSingleEnergy(energy: Energy) {
+    this.customCard.energy_type = energy;
+  }
+
+  onAddWeakness(energy: Energy) {
+    this.customCard.weaknesses.push(energy);
+  }
+  onRemoveWeakness(energy: Energy) {
+    const index = this.customCard.weaknesses.indexOf(energy, 0);
+    if (index > -1) {
+      this.customCard.weaknesses.splice(index, 1);
+    }
+  }
+
+  onRemoveResistance(energy: Energy) {
+    const index = this.customCard.resistance.indexOf(energy, 0);
+    if (index > -1) {
+      this.customCard.resistance.splice(index, 1);
+    }
+  }
+  onRemoveRetreatCost(energy: Energy) {
+    const index = this.customCard.retreatCost.indexOf(energy, 0);
+    if (index > -1) {
+      this.customCard.retreatCost.splice(index, 1);
+    }
+  }
+  onAddResistance(energy: Energy) {
+    this.customCard.resistance.push(energy);
+  }
+  onAddRetreatCost(energy: Energy) {
+    this.customCard.retreatCost.push(energy);
+  }
+
+
 
   onFileSelected(event: any) {
     const file: File = event?.target?.files[0];
