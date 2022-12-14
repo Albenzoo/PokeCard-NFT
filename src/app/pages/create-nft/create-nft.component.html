@@ -111,10 +111,11 @@
 
     <h2>Attack list</h2>
     <div class="input-group">
-      <div *ngFor="let attack of attackList; let i = index">
+      <div *ngFor="let attack of customCard.attack_list; let i = index">
         <app-energy-chooser
           mode="multi"
-          (selectedSingleEnergy)="onSelectedSingleEnergy($event)"
+          (selectedMultipleEnergy)="onAddAttackCost($event, i)"
+          (deleteEnergy)="onRemoveAttackCost($event, i)"
           listLabel="Cost"
         ></app-energy-chooser>
 
@@ -125,6 +126,16 @@
             name="attackName{{ i }}"
             matInput
             placeholder="Ex. Fireball"
+          />
+          <mat-icon matSuffix>drive_file_rename_outline</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Text</mat-label>
+          <input
+            [(ngModel)]="attack.text"
+            name="attackText{{ i }}"
+            matInput
+            placeholder="Describe attack"
           />
           <mat-icon matSuffix>drive_file_rename_outline</mat-icon>
         </mat-form-field>
@@ -144,9 +155,9 @@
           >
         </mat-form-field>
 
-        <button mat-mini-fab color="accent">
+        <!-- <button mat-mini-fab color="accent">
           <mat-icon>add</mat-icon>
-        </button>
+        </button> -->
       </div>
     </div>
 
@@ -184,6 +195,18 @@
         listLabel="Retreat Cost"
       ></app-energy-chooser>
 
+      <mat-form-field appearance="outline">
+        <mat-label>Artist</mat-label>
+        <input
+          [(ngModel)]="customCard.description"
+          name="Description"
+          matInput
+          placeholder="Ex. Descrive the pokemon"
+        />
+        <mat-icon matSuffix
+          ><span class="material-symbols-outlined"> brush </span></mat-icon
+        >
+      </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Artist</mat-label>
         <input
