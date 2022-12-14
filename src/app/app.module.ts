@@ -19,6 +19,10 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { CardComponent } from './shared/card/card.component';
 import { EnergyChooserComponent } from './shared/energy-chooser/energy-chooser.component'
+import { MatChipsModule } from '@angular/material/chips';
+import { MatChipList } from '@angular/material/chips';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -45,7 +49,9 @@ const routes: Routes = [
     MatFormFieldModule,
     FormsModule,
     MatInputModule,
+    MatChipsModule,
     HttpClientModule,
+    MatButtonToggleModule,
     RouterModule.forRoot(routes),
   ],
   exports: [RouterModule],
