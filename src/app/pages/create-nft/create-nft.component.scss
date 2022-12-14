@@ -16,6 +16,19 @@
             flex-wrap: wrap;
             align-items: baseline;
         }
+
+        .image-card {
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+
+            &:hover {
+                border: 1.5px solid white;
+            }
+            .upload-btn {
+                margin-left: 2rem;
+            }
+        }
     }
 
     #card-preview {
