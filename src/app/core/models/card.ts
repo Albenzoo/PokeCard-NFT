@@ -17,7 +17,7 @@ export interface Card {
   resistance: (EnergyValue | Energy)[]; //One or more resistances for a given card
   retreatCost: (EnergyValue | Energy)[]; //A list of costs it takes to retreat and return the card to your bench
   description: string;
-  level: number;
+  level?: number;
   artist: string; //The artist of the card
   number: string; //The nuber of the card
 
