@@ -45,27 +45,57 @@ export class CreateNftComponent implements OnInit {
       rarity: 'Common',
       attack_list: [
         {
-          cost: [],
-          name: "",
+          cost: ["Colorless"],
+          name: "Scratch",
           text: "",
-
-          damage: undefined
+          damage: 10
         },
         {
-          cost: [],
-          name: "",
-          text: "",
-          damage: undefined
+          cost: ["Fire", "Colorless"],
+          name: "Ember",
+          text: "Discard I Fire Energy card attached to Charmander in order to use this attack.",
+          damage: 30
         }
       ],
       description: 'Obviously prefers hot places. If it gets caught in the rain, steam is said to spout from the tip of his tail.',
       level: 10,
-      weaknesses: [],
+      weaknesses: ["Water"],
       resistance: [],
-      retreatCost: [],
+      retreatCost: ["Colorless"],
       artist: 'Mitsuhiro Arita',
       number: '46/102'
     };
+    /* this.customCard = {
+      name: "Pikachu",
+      hp: 50,
+      image: "",
+      length: 1.4,
+      weight: 13,
+      type: 'Mouse',
+      energy_type: 'Lightning',
+      rarity: 'Common',
+      attack_list: [
+        {
+          cost: ["Colorless"],
+          name: "Gnaw",
+          text: "",
+          damage: 10
+        },
+        {
+          cost: ["Lightning", "Colorless"],
+          name: "Thunder Jolt",
+          text: "Flip a coin. if tail, Pikachu does 10 damage to itself.",
+          damage: 30
+        }
+      ],
+      description: 'When several of these Pokémon gather, theri electricity can cause lightning storms.',
+      level: undefined,
+      weaknesses: ["Fighting"],
+      resistance: [],
+      retreatCost: ["Colorless"],
+      artist: 'Mitsuhiro Arita',
+      number: '58/102'
+    }; */
 
   }
   emitEventImageLoadedToCard(myImage: any) {
