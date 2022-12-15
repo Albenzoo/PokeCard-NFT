@@ -196,7 +196,7 @@ table.costs {
 /* ----- "Basic Pokemon" font styling */
 td.basic {
     font-size: 9px;
-    font-weight: 600;
+    font-weight: 700;
     margin: 0px;
     padding: 0px;
 }
@@ -206,16 +206,16 @@ td.nameofanimal {
     font-weight: 700;
     font-size: 20px;
     margin: 0px;
-    padding: 0px;
+    //padding: 0px;
 }
 
 /* ----- HP font styling */
 td.hp {
     color: crimson;
-    font-size: 18px;
-    text-align: right;
-    font-weight: 600;
-    width: 50px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 500;
+    width: 64px;
 }
 
 /* ----- Type sign next to HP - OK to remove if replaced with image */
@@ -247,7 +247,7 @@ this is DIRECTLY UNDER THE IMAGE */
 p.description {
     /* This is skinnier than the image above it */
     width: 250px; /* DO NOT REMOVE, HEATHER! */
-    padding: 2px 2px 2px 2px;
+    //padding: 2px 2px 2px 2px;
     margin: 0px 0px 5px 30px;
     background: linear-gradient(to right, goldenrod, yellow, goldenrod);
     font-size: 10px;
@@ -265,12 +265,17 @@ td.energy {
     padding: 0px;
     font-size: 18px;
     text-align: center;
+    vertical-align: middle;
 }
 
 /* ----- Cell that holds Attack Name and Description */
 td.attackdesc {
     margin: 5px;
     padding: 5px;
+    vertical-align: middle;
+}
+tr.attack-stat {
+    height: 3rem;
 }
 
 /* ----- Cards with no Attack Description have the Attack Name centered
@@ -285,21 +290,23 @@ td.attackdescCENTER {
 /* ----- Attack Name Only */
 span.label {
     font-weight: 700;
-    font-size: 14px;
+    font-size: 16px;
+    padding-right: 0.2rem;
 }
 
 /* ----- Attack Description */
 span.labeltext {
-    font-weight: 400;
+    font-weight: 500;
     font-size: 12px;
 }
 
 /* ----- Attack Damage */
 td.damage {
-    font-weight: 400;
-    font-size: 20px;
+    font-weight: 500;
+    font-size: 22px;
     width: 25px;
     text-align: center;
+    vertical-align: middle;
 }
 
 table.stats {
@@ -350,8 +357,8 @@ li.italicize {
     //margin: 5px 0px 0px 0px;
     //padding: 5px 5px 5px 5px;
     width: 298px;
-    /* Remove comment marks to test size */
-    /* border: 1px solid magenta; */
+    padding-inline: 0.2rem;
+    line-height: 0.9rem;
 }
 
 /* COPYRIGHTS */
@@ -368,14 +375,16 @@ li.copyrights {
 /* Copyright font changes along the line, and I love classes apparently */
 span.medium {
     font-weight: 500;
+    padding-right: 0.1rem;
 }
 
 span.strong {
-    font-weight: 700;
+    font-weight: 800;
+    padding-right: 0.1rem;
 }
 
 .rarity {
-    max-width: 0.5rem;
+    max-width: 0.4rem;
 }
 
 /* Below is a MODIFIED Reset CSS file
@@ -517,4 +526,8 @@ table {
     justify-content: center;
     align-items: center;
     column-gap: 0.1rem;
+}
+
+.text-center {
+    text-align: center;
 }
