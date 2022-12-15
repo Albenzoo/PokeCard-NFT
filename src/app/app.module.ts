@@ -22,6 +22,7 @@ import { EnergyChooserComponent } from './shared/energy-chooser/energy-chooser.c
 import { MatChipsModule } from '@angular/material/chips';
 import { MatChipList } from '@angular/material/chips';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 const routes: Routes = [
@@ -52,6 +53,7 @@ const routes: Routes = [
     MatChipsModule,
     HttpClientModule,
     MatButtonToggleModule,
+    MatExpansionModule,
     RouterModule.forRoot(routes),
   ],
   exports: [RouterModule],
