@@ -12,12 +12,13 @@ import { map, Observable } from 'rxjs';
 import { createAlchemyWeb3 } from '@alch/alchemy-web3';
 import { HttpClient } from '@angular/common/http';
 import { UtilsService } from './utils.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WalletService {
-  constructor(private http: HttpClient, private utilsService: UtilsService) { }
+  constructor(private http: HttpClient, private utilsService: UtilsService, private spinner: NgxSpinnerService) { }
 
   web3Instance: any = new Web3(window.ethereum);
   web3 = createAlchemyWeb3(
@@ -68,7 +69,7 @@ export class WalletService {
       error: (error: any) => {
         console.log({ error });
       },
-      complete: () => { }
+      complete: () => { this.spinner.hide() }
     });
   }
 

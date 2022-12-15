@@ -23,6 +23,8 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatChipList } from '@angular/material/chips';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 const routes: Routes = [
@@ -54,6 +56,8 @@ const routes: Routes = [
     HttpClientModule,
     MatButtonToggleModule,
     MatExpansionModule,
+    NgxSpinnerModule,
+    MatSnackBarModule,
     RouterModule.forRoot(routes),
   ],
   exports: [RouterModule],

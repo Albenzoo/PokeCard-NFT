@@ -31,6 +31,7 @@
     "dotenv": "^16.0.1",
     "hardhat": "^2.10.2",
     "https-browserify": "^1.0.0",
+    "ngx-spinner": "^13.1.1",
     "os-browserify": "^0.3.0",
     "rxjs": "~7.5.0",
     "stream-browserify": "^3.0.0",
