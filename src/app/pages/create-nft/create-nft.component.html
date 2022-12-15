@@ -1,239 +1,304 @@
-<mat-card id="container">
-  <form id="card-form">
-    <h2>Main info</h2>
+<div id="container">
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel
+      [expanded]="step === 0"
+      (opened)="setStep(0)"
+      hideToggle
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title> Main Information </mat-panel-title>
+        <mat-panel-description>
+          Type the main information of the Pokemon
+          <mat-icon>account_circle</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
 
-    <div class="input-group">
-      <mat-form-field appearance="outline">
-        <mat-label>Name</mat-label>
-        <input
-          [(ngModel)]="customCard.name"
-          name="name"
-          matInput
-          placeholder="Ex. Charmander"
-        />
-        <mat-icon matSuffix>badge</mat-icon>
-      </mat-form-field>
+      <form id="card-form">
+        <div class="input-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input
+              [(ngModel)]="customCard.name"
+              name="name"
+              matInput
+              placeholder="Ex. Charmander"
+            />
+            <mat-icon matSuffix>badge</mat-icon>
+          </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>HP</mat-label>
-        <input
-          [(ngModel)]="customCard.hp"
-          name="hp"
-          matInput
-          placeholder="50"
-        />
-        <mat-icon matSuffix>health_and_safety</mat-icon>
-      </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>HP</mat-label>
+            <input
+              [(ngModel)]="customCard.hp"
+              name="hp"
+              matInput
+              placeholder="50"
+            />
+            <mat-icon matSuffix>health_and_safety</mat-icon>
+          </mat-form-field>
 
-      <div class="load-image-container">
-        <input
-          type="file"
-          class="file-input"
-          (change)="onFileSelected($event)"
-          #fileUpload
-        />
-        <mat-card class="image-card" (click)="fileUpload.click()">
-          <div class="file-upload">
-            {{ imageLabel }}
+          <mat-form-field appearance="outline">
+            <mat-label>Length</mat-label>
+            <input
+              [(ngModel)]="customCard.length"
+              name="length"
+              matInput
+              placeholder="EX. 2.65"
+            />
+            <mat-icon matSuffix>straighten</mat-icon>
+          </mat-form-field>
 
-            <button mat-mini-fab color="accent" class="upload-btn">
-              <mat-icon
-                >{{ customCard.image ? "image" : "add_photo_alternate" }}
-              </mat-icon>
-            </button>
+          <mat-form-field appearance="outline">
+            <mat-label>Weight</mat-label>
+            <input
+              [(ngModel)]="customCard.weight"
+              name="weight"
+              matInput
+              placeholder="50"
+            />
+            <mat-icon matSuffix>scale</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Type</mat-label>
+            <input
+              [(ngModel)]="customCard.type"
+              name="type"
+              matInput
+              placeholder="Ex. Lizard"
+            />
+            <mat-icon matSuffix
+              ><span class="material-symbols-outlined"> pets </span></mat-icon
+            >
+          </mat-form-field>
+          <div class="load-image-container">
+            <input
+              type="file"
+              class="file-input"
+              (change)="onFileSelected($event)"
+              #fileUpload
+            />
+            <mat-card class="image-card" (click)="fileUpload.click()">
+              <div class="file-upload">
+                {{ imageLabel }}
+
+                <button mat-mini-fab color="accent" class="upload-btn">
+                  <mat-icon
+                    >{{ customCard.image ? "image" : "add_photo_alternate" }}
+                  </mat-icon>
+                </button>
+              </div>
+            </mat-card>
           </div>
-        </mat-card>
-      </div>
-      <mat-form-field appearance="outline">
-        <mat-label>Length</mat-label>
-        <input
-          [(ngModel)]="customCard.length"
-          name="length"
-          matInput
-          placeholder="EX. 2.65"
-        />
-        <mat-icon matSuffix>straighten</mat-icon>
-      </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Weight</mat-label>
-        <input
-          [(ngModel)]="customCard.weight"
-          name="weight"
-          matInput
-          placeholder="50"
-        />
-        <mat-icon matSuffix>scale</mat-icon>
-      </mat-form-field>
+          <mat-card class="rarity">
+            Rarity:
+            <mat-button-toggle-group
+              [(ngModel)]="customCard.rarity"
+              name="rarity"
+              aria-label="Rarity"
+            >
+              <mat-button-toggle value="Common">Common</mat-button-toggle>
+              <mat-button-toggle value="Uncommon">Uncommon</mat-button-toggle>
+              <mat-button-toggle value="Rare">Rare</mat-button-toggle>
+            </mat-button-toggle-group>
+          </mat-card>
+          <app-energy-chooser
+            mode="single"
+            (selectedSingleEnergy)="onSelectedSingleEnergy($event)"
+            chooserLabel="Energy Type"
+          ></app-energy-chooser>
+        </div>
+      </form>
+      <mat-action-row>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Type</mat-label>
-        <input
-          [(ngModel)]="customCard.type"
-          name="type"
-          matInput
-          placeholder="Ex. Lizard"
-        />
-        <mat-icon matSuffix
-          ><span class="material-symbols-outlined"> pets </span></mat-icon
-        >
-      </mat-form-field>
-      <app-energy-chooser
-        mode="single"
-        (selectedSingleEnergy)="onSelectedSingleEnergy($event)"
-        chooserLabel="Energy Type"
-      ></app-energy-chooser>
+    <mat-expansion-panel
+      [expanded]="step === 1"
+      (opened)="setStep(1)"
+      hideToggle
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title> Attack list </mat-panel-title>
+        <mat-panel-description>
+          Type the attacks details
+          <mat-icon>sports_martial_arts</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <form id="card-form">
+        <div class="input-group attackGroup">
+          <div
+            *ngFor="
+              let attack of customCard.attack_list;
+              let i = index;
+              let first = first
+            "
+          >
+            <mat-card [ngStyle]="{ 'margin-bottom': first ? '2rem' : '' }">
+              <h3>{{ first ? "First" : "Second" }} Attack</h3>
+              <div class="attack">
+                <app-energy-chooser
+                  mode="multi"
+                  (selectedMultipleEnergy)="onAddAttackCost($event, i)"
+                  (deleteEnergy)="onRemoveAttackCost($event, i)"
+                  listLabel="Cost"
+                ></app-energy-chooser>
 
-      <!-- <mat-form-field appearance="outline">
-        <mat-label>Energy Type</mat-label>
-        <input
-          [(ngModel)]="customCard.energy_type"
-          name="energy_type"
-          matInput
-          placeholder="Ex. Fire"
-        />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-      </mat-form-field> -->
+                <mat-form-field appearance="outline">
+                  <mat-label>Attack name</mat-label>
+                  <input
+                    [(ngModel)]="attack.name"
+                    name="attackName{{ i }}"
+                    matInput
+                    placeholder="Ex. Fireball"
+                  />
+                  <mat-icon matSuffix>drive_file_rename_outline</mat-icon>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Text</mat-label>
+                  <input
+                    [(ngModel)]="attack.text"
+                    name="attackText{{ i }}"
+                    matInput
+                    placeholder="Describe attack"
+                  />
+                  <mat-icon matSuffix>drive_file_rename_outline</mat-icon>
+                </mat-form-field>
 
-      <p>
-        Rarity:
-        <mat-button-toggle-group
-          [(ngModel)]="customCard.rarity"
-          name="rarity"
-          aria-label="Rarity"
-        >
-          <mat-button-toggle value="Common">Common</mat-button-toggle>
-          <mat-button-toggle value="Uncommon">Uncommon</mat-button-toggle>
-          <mat-button-toggle value="Rare">Rare</mat-button-toggle>
-        </mat-button-toggle-group>
-      </p>
-    </div>
+                <mat-form-field appearance="outline">
+                  <mat-label>Damage</mat-label>
+                  <input
+                    [(ngModel)]="attack.damage"
+                    name="attackDamage{{ i }}"
+                    matInput
+                    placeholder="Ex. 10"
+                  />
+                  <mat-icon matSuffix
+                    ><span class="material-symbols-outlined">
+                      <span class="material-symbols-outlined">
+                        add_moderator
+                      </span>
+                    </span></mat-icon
+                  >
+                </mat-form-field>
+              </div>
+            </mat-card>
+          </div>
+        </div>
+      </form>
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
 
-    <h2>Attack list</h2>
-    <div class="input-group">
-      <div *ngFor="let attack of customCard.attack_list; let i = index">
-        <app-energy-chooser
-          mode="multi"
-          (selectedMultipleEnergy)="onAddAttackCost($event, i)"
-          (deleteEnergy)="onRemoveAttackCost($event, i)"
-          listLabel="Cost"
-        ></app-energy-chooser>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Attack name</mat-label>
-          <input
-            [(ngModel)]="attack.name"
-            name="attackName{{ i }}"
-            matInput
-            placeholder="Ex. Fireball"
-          />
-          <mat-icon matSuffix>drive_file_rename_outline</mat-icon>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Text</mat-label>
-          <input
-            [(ngModel)]="attack.text"
-            name="attackText{{ i }}"
-            matInput
-            placeholder="Describe attack"
-          />
-          <mat-icon matSuffix>drive_file_rename_outline</mat-icon>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Damage</mat-label>
-          <input
-            [(ngModel)]="attack.damage"
-            name="attackDamage{{ i }}"
-            matInput
-            placeholder="Ex. 10"
-          />
-          <mat-icon matSuffix
+    <mat-expansion-panel
+      [expanded]="step === 2"
+      (opened)="setStep(2)"
+      hideToggle
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title> Other info </mat-panel-title>
+        <mat-panel-description>
+          Complete the data with other informations
+          <mat-icon
             ><span class="material-symbols-outlined">
-              sports_martial_arts
+              description
             </span></mat-icon
           >
-        </mat-form-field>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <form id="card-form">
+        <div class="input-group otherInfoGroup">
+          <!-- <mat-form-field appearance="outline">
+            <mat-label>Level</mat-label>
+            <input
+              [(ngModel)]="customCard.level"
+              name="level"
+              matInput
+              placeholder="Ex. 90"
+            />
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          </mat-form-field> -->
 
-        <!-- <button mat-mini-fab color="accent">
-          <mat-icon>add</mat-icon>
-        </button> -->
-      </div>
-    </div>
+          <app-energy-chooser
+            mode="multi"
+            listLabel="Weakness"
+            (selectedMultipleEnergy)="onAddWeakness($event)"
+            (deleteEnergy)="onRemoveWeakness($event)"
+          ></app-energy-chooser>
 
-    <h2>Other info</h2>
-    <div class="input-group">
-      <mat-form-field appearance="outline">
-        <mat-label>Level</mat-label>
-        <input
-          [(ngModel)]="customCard.level"
-          name="level"
-          matInput
-          placeholder="Ex. 90"
-        />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-      </mat-form-field>
+          <app-energy-chooser
+            mode="multi"
+            (selectedMultipleEnergy)="onAddResistance($event)"
+            (deleteEnergy)="onRemoveResistance($event)"
+            listLabel="Resistance"
+          ></app-energy-chooser>
 
-      <app-energy-chooser
-        mode="multi"
-        listLabel="Weakness"
-        (selectedMultipleEnergy)="onAddWeakness($event)"
-        (deleteEnergy)="onRemoveWeakness($event)"
-      ></app-energy-chooser>
+          <app-energy-chooser
+            mode="multi"
+            (selectedMultipleEnergy)="onAddRetreatCost($event)"
+            (deleteEnergy)="onRemoveRetreatCost($event)"
+            listLabel="Retreat Cost"
+          ></app-energy-chooser>
 
-      <app-energy-chooser
-        mode="multi"
-        (selectedMultipleEnergy)="onAddResistance($event)"
-        (deleteEnergy)="onRemoveResistance($event)"
-        listLabel="Resistance"
-      ></app-energy-chooser>
+          <!--           <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <input
+              [(ngModel)]="customCard.description"
+              name="Description"
+              matInput
+              placeholder="Ex. Descrive the pokemon"
+            />
+            <mat-icon matSuffix
+              ><span class="material-symbols-outlined">
+                drive_file_rename_outline
+              </span></mat-icon
+            >
+          </mat-form-field> -->
 
-      <app-energy-chooser
-        mode="multi"
-        (selectedMultipleEnergy)="onAddRetreatCost($event)"
-        (deleteEnergy)="onRemoveRetreatCost($event)"
-        listLabel="Retreat Cost"
-      ></app-energy-chooser>
+          <mat-form-field class="textarea" appearance="fill">
+            <mat-label>Description</mat-label>
+            <textarea
+              name="Description"
+              matInput
+              placeholder="Ex. Obviously prefers hot places. If it gets caught in the rain..."
+              [(ngModel)]="customCard.description"
+            ></textarea>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Artist</mat-label>
+            <input
+              [(ngModel)]="customCard.artist"
+              name="artist"
+              matInput
+              placeholder="Ex. Arita"
+            />
+            <mat-icon matSuffix
+              ><span class="material-symbols-outlined"> brush </span></mat-icon
+            >
+          </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Description</mat-label>
-        <input
-          [(ngModel)]="customCard.description"
-          name="Description"
-          matInput
-          placeholder="Ex. Descrive the pokemon"
-        />
-        <mat-icon matSuffix
-          ><span class="material-symbols-outlined">
-            drive_file_rename_outline
-          </span></mat-icon
-        >
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Artist</mat-label>
-        <input
-          [(ngModel)]="customCard.artist"
-          name="artist"
-          matInput
-          placeholder="Ex. Arita"
-        />
-        <mat-icon matSuffix
-          ><span class="material-symbols-outlined"> brush </span></mat-icon
-        >
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Card number</mat-label>
-        <input
-          [(ngModel)]="customCard.number"
-          name="number"
-          matInput
-          placeholder="Ex. 46/102"
-        />
-        <mat-icon matSuffix>confirmation_number</mat-icon>
-      </mat-form-field>
-    </div>
-  </form>
+          <mat-form-field appearance="outline">
+            <mat-label>Card number</mat-label>
+            <input
+              [(ngModel)]="customCard.number"
+              name="number"
+              matInput
+              placeholder="Ex. 46/102"
+            />
+            <mat-icon matSuffix>confirmation_number</mat-icon>
+          </mat-form-field>
+        </div>
+      </form>
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="nextStep()">End</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
 
   <div id="card-preview">
     <poke-card
@@ -245,4 +310,4 @@
       Create card NFT
     </button>
   </div>
-</mat-card>
+</div>
