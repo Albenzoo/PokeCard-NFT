@@ -1,6 +1,9 @@
 <div [ngClass]="mode == 'multi' ? 'chooser-container' : ''">
   <mat-form-field
     class="chip-energy-field"
+    [ngStyle]="{
+      'max-height': selectedEnergies.length > 2 ? '7.7rem' : '5.4rem'
+    }"
     appearance="fill"
     *ngIf="mode == 'multi'"
   >

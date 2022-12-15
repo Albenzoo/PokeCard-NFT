@@ -14,7 +14,18 @@
             display: flex;
             column-gap: 1rem;
             flex-wrap: wrap;
-            align-items: baseline;
+            align-items: center;
+            &.otherInfoGroup {
+                padding-top: 1rem;
+                display: flex;
+                column-gap: 1rem;
+                flex-wrap: wrap;
+                align-items: unset;
+                justify-content: center;
+                .textarea {
+                    min-width: 48%;
+                }
+            }
         }
 
         .image-card {
@@ -39,3 +50,43 @@
         align-items: center;
     }
 }
+.rarity {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.3rem;
+    align-items: center;
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.2s ease-in-out;
+    &:hover {
+        border: 1.5px solid white;
+    }
+}
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+    flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.example-headers-align {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.attack {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 1rem;
+    align-items: baseline;
+}
+/* .attackGroup app-energy-chooser {
+    .chooser-container {
+        align-content: center;
+    }
+} */

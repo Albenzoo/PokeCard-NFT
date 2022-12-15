@@ -23,6 +23,8 @@ export class CreateNftComponent implements OnInit {
   imagePreview: any = "";
   imageLoadedSubject: Subject<any> = new Subject<any>();
   eventsImageLoaded: Subject<void> = new Subject<void>();
+  step = 0;
+
 
 
 
@@ -97,6 +99,18 @@ export class CreateNftComponent implements OnInit {
       number: '58/102'
     }; */
 
+  }
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
   }
   emitEventImageLoadedToCard(myImage: any) {
     this.eventsImageLoaded.next(myImage);
