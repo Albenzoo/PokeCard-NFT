@@ -49,7 +49,7 @@ async function mintNFT(tokenURI: string) {
             console.log(
               'The hash of your transaction is: ',
               hash,
-              "\nCheck Alchemy's Mempool to view the status of your transaction!"
+              `\nCheck Alchemy's Mempool to view the status of your transaction!`
             );
           } else {
             console.log(
