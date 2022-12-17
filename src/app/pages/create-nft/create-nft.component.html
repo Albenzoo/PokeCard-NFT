@@ -144,6 +144,7 @@
                   (selectedMultipleEnergy)="onAddAttackCost($event, i)"
                   (deleteEnergy)="onRemoveAttackCost($event, i)"
                   listLabel="Cost"
+                  [selectedEnergies]="attack.cost"
                 ></app-energy-chooser>
 
                 <mat-form-field appearance="outline">
@@ -228,6 +229,7 @@
             listLabel="Weakness"
             (selectedMultipleEnergy)="onAddWeakness($event)"
             (deleteEnergy)="onRemoveWeakness($event)"
+            [selectedEnergies]="customCard.weaknesses"
           ></app-energy-chooser>
 
           <app-energy-chooser
@@ -235,6 +237,7 @@
             (selectedMultipleEnergy)="onAddResistance($event)"
             (deleteEnergy)="onRemoveResistance($event)"
             listLabel="Resistance"
+            [selectedEnergies]="customCard.resistance"
           ></app-energy-chooser>
 
           <app-energy-chooser
@@ -242,22 +245,8 @@
             (selectedMultipleEnergy)="onAddRetreatCost($event)"
             (deleteEnergy)="onRemoveRetreatCost($event)"
             listLabel="Retreat Cost"
+            [selectedEnergies]="customCard.retreatCost"
           ></app-energy-chooser>
-
-          <!--           <mat-form-field appearance="outline">
-            <mat-label>Description</mat-label>
-            <input
-              [(ngModel)]="customCard.description"
-              name="Description"
-              matInput
-              placeholder="Ex. Descrive the pokemon"
-            />
-            <mat-icon matSuffix
-              ><span class="material-symbols-outlined">
-                drive_file_rename_outline
-              </span></mat-icon
-            >
-          </mat-form-field> -->
 
           <mat-form-field class="textarea" appearance="fill">
             <mat-label>Description</mat-label>
