@@ -17,8 +17,8 @@ export class EnergyChooserComponent implements OnInit {
 
 
   energyTypes: Energy[] = ['Fire', 'Fighting', 'Lightning', 'Grass', 'Water', 'Psychic', 'Darkness', 'Metal', 'Colorless'];
-  selectedEnergies: Energy[] = [];
-  singleEnergy: Energy = null;
+  @Input() selectedEnergies: Energy[] = [];
+  @Input() singleEnergy: Energy = null;
   constructor() { }
 
   ngOnInit(): void {
@@ -38,7 +38,7 @@ export class EnergyChooserComponent implements OnInit {
     } else {
       if (this.selectedEnergies.length < 4) {
         this.selectedEnergies.push(energy);
-        this.selectedMultipleEnergy.emit(energy);
+        //this.selectedMultipleEnergy.emit(energy);
       }
     }
   }
