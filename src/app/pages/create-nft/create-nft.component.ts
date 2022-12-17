@@ -184,9 +184,7 @@ export class CreateNftComponent implements OnInit {
     this.customCard.hp = Number(this.customCard.hp);
     this.customCard.level = Number(this.customCard.level);
     console.log("customCard:", this.customCard);
-
     this.apiService.loadCardToIPFS(this.customCard);
-
   }
 
 }
