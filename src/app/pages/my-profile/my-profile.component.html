@@ -1,1 +1,16 @@
-<p>my-profile works!</p>
+<!-- <button mat-button (click)="getMyNfts()">Recupera miei NFTs</button>
+ -->
+<div
+  class="cards-main-container"
+  *ngIf="wallet.walletAddress; else connectYourWallet"
+>
+  <ng-container *ngFor="let card of wallet.myNfts">
+    <ng-container *ngIf="card.weight">
+      <poke-card [pokemon]="card" mode="display"></poke-card>
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #connectYourWallet
+  >Connect your wallet to see your cards</ng-template
+>
