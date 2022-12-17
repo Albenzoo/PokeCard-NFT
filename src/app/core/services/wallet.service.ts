@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 import { any, json } from 'hardhat/internal/core/params/argumentTypes';
 import { ApiService } from './api.service';
 import { url } from 'inspector';
-import { map, Observable, throwError } from 'rxjs';
+import { map, Observable, Subject, throwError } from 'rxjs';
 import { createAlchemyWeb3 } from '@alch/alchemy-web3';
 import { HttpClient } from '@angular/common/http';
 import { UtilsService } from './utils.service';
@@ -22,10 +22,16 @@ export class WalletService {
   constructor(private http: HttpClient, private utilsService: UtilsService, private spinner: NgxSpinnerService, private snackBarService: SnackBarService) { }
 
   web3Instance: any = new Web3(window.ethereum);
-  web3 = createAlchemyWeb3(
-    environment.apiUrl,
-  );
+  /*   web3 = createAlchemyWeb3(
+      environment.apiUrl,
+    ); */
   walletAddress: string = '';
+  private subject = new Subject<boolean>();
+
+  // Observable stream
+  isConnected$: Observable<boolean> = this.subject.asObservable();
+
+
   contractInfo: ContractInfo = {
     contractAddress: environment.contractAddress,
     contractABI: contract.abi as AbiItem[],
@@ -36,6 +42,13 @@ export class WalletService {
   );
 
   allNfts: any[] = [];
+  myNfts: any[] = [];
+
+
+  // Method to update the value of the variable
+  updateConnectedStatus(value: boolean) {
+    this.subject.next(value);
+  }
 
   public getNftBalance(): Promise<number> {
     return new Promise((resolve, reject) => {
@@ -59,17 +72,16 @@ export class WalletService {
       })
         ,);
   }
-  storeDataFromURI(url: string): void {
+  storeDataFromURI(url: string, addToMyNfts?: boolean): void {
     const parseUrl = this.utilsService.parseIpfsUrl(url);
     this.getNftInfo(parseUrl).subscribe({
       next: (data: any) => {
         console.log({ data });
-        this.allNfts.push(data);
-        console.log("Tutti gli NFT:", this.allNfts);
+        addToMyNfts ? this.myNfts.push(data) : this.allNfts.push(data);
+        //console.log("Tutti gli NFT:", this.allNfts);
       },
       error: (error: any) => {
         console.log({ error });
-
       },
       complete: () => { this.spinner.hide() }
     });
@@ -86,11 +98,17 @@ export class WalletService {
     }));
   }
 
-  getMyNFTs() {
-    let transaction = this.nftContract.getMyNFTs().subscribe((response: any) => {
-      console.log("Ecco i miei NFT:", response);
-    });
+  async getMyNFTs() {
+    const isWalletConnected = await this.checkWalletConnection();
+    if (!isWalletConnected) return;
+    let allMyNFTsTransactions = await this.nftContract.methods.getMyNFTs().call();
 
+    console.log("Ecco i miei NFT:", allMyNFTsTransactions);
+    const items = await Promise.all(allMyNFTsTransactions.map(async (i: any) => {
+      const tokenURI = await this.nftContract.methods.tokenURI(i.tokenId).call();
+      return this.storeDataFromURI(tokenURI, true);
+    }));
+    console.log("My NFTs:", this.myNfts);
   }
 
 
@@ -104,11 +122,11 @@ export class WalletService {
   public async mintNFT(tokenURI: string) {
     const isWalletConnected = await this.checkWalletConnection();
     if (!isWalletConnected) return;
-    const nonce = await this.web3.eth.getTransactionCount(environment.PUBLIC_KEY, 'latest'); //get latest nonce
+    const nonce = await this.web3Instance.eth.getTransactionCount(environment.PUBLIC_KEY, 'latest'); //get latest nonce
 
     const inputPrice: number = 0.02;
-    const price = this.web3.utils.toWei(inputPrice.toString(), 'ether');
-    const priceBN = this.web3.utils.toBN(price);
+    const price = this.web3Instance.utils.toWei(inputPrice.toString(), 'ether');
+    const priceBN = this.web3Instance.utils.toBN(price);
     console.log('NFT price set:', price, 'Wei');
 
     //get the fee price to be payed in every transaction
@@ -127,8 +145,8 @@ export class WalletService {
       data: this.nftContract.methods.createToken(tokenURI, priceBN).encodeABI(),
       value: feePrice,
     };
-    return this.web3.eth.sendTransaction(tx)
-      .then((response) => {
+    return this.web3Instance.eth.sendTransaction(tx)
+      .then((response: any) => {
         this.spinner.hide();
         this.snackBarService.openSnackBar(`NFT Created! Your transaction hash is: ${response.transactionHash}`, "OK");
         console.log({ response }, 'The hash of your transaction is: ',
@@ -137,7 +155,7 @@ export class WalletService {
         return response;
       }
       )
-      .catch((error) => {
+      .catch((error: any) => {
         console.error(error);
         this.snackBarService.openSnackBar(error.message, "OK", true);
         this.spinner.hide();
@@ -162,6 +180,14 @@ export class WalletService {
           this.walletAddress = accountsAddress[0];
           console.log(this.walletAddress);
           this.web3Instance = new Web3(window.ethereum);
+          this.nftContract = new this.web3Instance.eth.Contract(
+            this.contractInfo.contractABI,
+            this.contractInfo.contractAddress,
+            {
+              from: this.walletAddress,
+            }
+          );
+          this.updateConnectedStatus(true);
           //const accounts = this.web3Instance.eth.getAccounts();
 
           console.log('Account connected successfully!', this.web3Instance);
@@ -169,11 +195,13 @@ export class WalletService {
         })
         .catch(() => {
           console.log('Somethings goes wrong...retry');
+          this.spinner.hide();
           return false;
         });
       return connection;
     } else {
       this.snackBarService.openSnackBar('Non-Ethereum browser detected. You Should consider using MetaMask!', "OK", true);
+      this.spinner.hide();
       return false;
     }
   }
