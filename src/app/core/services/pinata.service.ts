@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Card } from '../models/card';
-import { catchError, map, of } from 'rxjs';
+import { catchError, map, of, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 
@@ -42,6 +42,9 @@ export class PinataService {
 
 
   uploadFileToIPFS(image: File) {
+    if (!image) {
+      return throwError(() => new Error('Image not found'))
+    }
     const url = `${environment.pinataBaseUrl}pinning/pinFileToIPFS`;
     let formData: any = new FormData();
     formData.append('file', image, image.name);

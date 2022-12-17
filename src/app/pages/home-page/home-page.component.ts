@@ -18,8 +18,7 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.wallet.allNfts.length == 0) {
-      this.snackBarService.openSnackBar("testo", "azione");
-      //this.spinner.show();
+      this.spinner.show();
       this.wallet.getAllNFTs();
     }
     /*     const nftContract = new this.wallet.web3.eth.Contract(

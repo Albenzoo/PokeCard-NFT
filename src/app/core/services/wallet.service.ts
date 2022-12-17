@@ -8,17 +8,18 @@ import { environment } from 'src/environments/environment';
 import { any, json } from 'hardhat/internal/core/params/argumentTypes';
 import { ApiService } from './api.service';
 import { url } from 'inspector';
-import { map, Observable } from 'rxjs';
+import { map, Observable, throwError } from 'rxjs';
 import { createAlchemyWeb3 } from '@alch/alchemy-web3';
 import { HttpClient } from '@angular/common/http';
 import { UtilsService } from './utils.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { SnackBarService } from './snack-bar.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WalletService {
-  constructor(private http: HttpClient, private utilsService: UtilsService, private spinner: NgxSpinnerService) { }
+  constructor(private http: HttpClient, private utilsService: UtilsService, private spinner: NgxSpinnerService, private snackBarService: SnackBarService) { }
 
   web3Instance: any = new Web3(window.ethereum);
   web3 = createAlchemyWeb3(
@@ -68,6 +69,7 @@ export class WalletService {
       },
       error: (error: any) => {
         console.log({ error });
+
       },
       complete: () => { this.spinner.hide() }
     });
@@ -82,7 +84,12 @@ export class WalletService {
       //const nftData = await this.getDataFromPinataURI(tokenURI);
       this.storeDataFromURI(tokenURI);
     }));
+  }
 
+  getMyNFTs() {
+    let transaction = this.nftContract.getMyNFTs().subscribe((response: any) => {
+      console.log("Ecco i miei NFT:", response);
+    });
 
   }
 
@@ -120,8 +127,10 @@ export class WalletService {
       data: this.nftContract.methods.createToken(tokenURI, priceBN).encodeABI(),
       value: feePrice,
     };
-    const transaction = this.web3.eth.sendTransaction(tx)
+    return this.web3.eth.sendTransaction(tx)
       .then((response) => {
+        this.spinner.hide();
+        this.snackBarService.openSnackBar(`NFT Created! Your transaction hash is: ${response.transactionHash}`, "OK");
         console.log({ response }, 'The hash of your transaction is: ',
           response.transactionHash,
           "\nCheck Alchemy's Mempool to view the status of your transaction!");
@@ -130,44 +139,19 @@ export class WalletService {
       )
       .catch((error) => {
         console.error(error);
-        return error
+        this.snackBarService.openSnackBar(error.message, "OK", true);
+        this.spinner.hide();
+        return throwError(() => new Error('Error minting the NFT'))
       });
+  }
 
-    /* const signPromise = this.web3.eth.accounts
-      .signTransaction(tx, tx.from)
-      .then((signedTx: any) => {
-        this.web3.eth.sendSignedTransaction(
-          signedTx.rawTransaction,
-          function (err, hash) {
-            if (!err) {
-              console.log(
-                'The hash of your transaction is: ',
-                hash,
-                "\nCheck Alchemy's Mempool to view the status of your transaction!"
-              );
-            } else {
-              console.log(
-                'Something went wrong when submitting your transaction:',
-                err
-              );
-            }
-          }
-        );
-      })
-      .catch((err) => {
-        console.log(' Promise failed:', err);
-      }); */
-  }
-  test() {
-    if (window.ethereum) { return true } else { return false }
-  }
 
   async connect() {
     if (window.ethereum) {
       console.log('Metamask is installed!');
       const chainId = await window.ethereum.request({ method: 'eth_chainId' });
       if (chainId !== '0x5') {
-        //alert('Incorrect network! Switch your metamask network to Rinkeby');
+        console.log('Incorrect network! Trying to switch your metamask network to Goerli');
         await window.ethereum.request({
           method: 'wallet_switchEthereumChain',
           params: [{ chainId: '0x5' }],
@@ -188,11 +172,8 @@ export class WalletService {
           return false;
         });
       return connection;
-
     } else {
-      window.alert(
-        'Non-Ethereum browser detected. You Should consider using MetaMask!'
-      );
+      this.snackBarService.openSnackBar('Non-Ethereum browser detected. You Should consider using MetaMask!', "OK", true);
       return false;
     }
   }
