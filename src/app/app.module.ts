@@ -25,11 +25,13 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'create-nft', component: CreateNftComponent },
+  { path: 'my-profile', component: MyProfileComponent },
 ];
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ const routes: Routes = [
     CreateNftComponent,
     CardComponent,
     EnergyChooserComponent,
+    MyProfileComponent,
   ],
   imports: [
     BrowserModule,
