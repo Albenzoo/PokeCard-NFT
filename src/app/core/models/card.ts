@@ -14,8 +14,8 @@ export interface Card {
   rarity: Rarity; //Common, Uncommon, Rare, Special
   attack_list: Attack[]; //One or more attacks for a given car
   weaknesses: Energy[]; //One or more weaknesses for a given card
-  resistance: (EnergyValue | Energy)[]; //One or more resistances for a given card
-  retreatCost: (EnergyValue | Energy)[]; //A list of costs it takes to retreat and return the card to your bench
+  resistance: Energy[]; //One or more resistances for a given card
+  retreatCost: Energy[]; //A list of costs it takes to retreat and return the card to your bench
   description: string;
   level?: number;
   artist: string; //The artist of the card
