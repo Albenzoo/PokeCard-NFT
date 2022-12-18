@@ -17,3 +17,16 @@
     align-content: flex-start;
     gap: 2rem;
 }
+
+.last-cards-minted {
+    margin: 4rem;
+    padding-bottom: 4rem;
+}
+.card {
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+        transform: scale(1.1);
+        transition: all 0.3s ease-in-out;
+    }
+}
