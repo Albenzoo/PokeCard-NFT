@@ -1,5 +1,15 @@
-<!-- <button mat-button (click)="getMyNfts()">Recupera miei NFTs</button>
- -->
+<div class="info-container">
+  <h2>
+    Wallet: <strong>{{ wallet.walletAddress }}</strong>
+  </h2>
+  <h2>
+    No. of NFT Cards: <strong>{{ wallet.myNfts.length }} Cards</strong>
+  </h2>
+  <h2>
+    Total Value: <strong>{{ wallet.myNftsValue }} ETH</strong>
+  </h2>
+</div>
+
 <div
   class="cards-main-container"
   *ngIf="wallet.walletAddress; else connectYourWallet"
