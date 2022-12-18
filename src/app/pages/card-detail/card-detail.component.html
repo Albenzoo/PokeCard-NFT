@@ -1,0 +1,37 @@
+<div id="container">
+  <div class="info-container" *ngIf="wallet.cardDetail as card">
+    <h2>
+      Name: <strong>{{ card.name }}</strong>
+    </h2>
+    <h2>
+      Price: <strong>{{ parsePriceToEther(card.price!) }} ETH</strong>
+    </h2>
+    <h2>
+      Seller: <strong>{{ card.seller }}</strong>
+    </h2>
+
+    <button
+      *ngIf="
+        card.seller!.toLowerCase() != wallet.walletAddress!.toLowerCase();
+        else alreadyOwner
+      "
+      class="buy-button"
+      mat-raised-button
+      color="primary"
+      (click)="buyCard()"
+    >
+      Buy
+    </button>
+    <ng-template #alreadyOwner
+      ><h1>You are already the owner of this card!</h1></ng-template
+    >
+  </div>
+
+  <div id="card-preview">
+    <poke-card
+      [pokemon]="wallet.cardDetail"
+      mode="display"
+      class="card"
+    ></poke-card>
+  </div>
+</div>
