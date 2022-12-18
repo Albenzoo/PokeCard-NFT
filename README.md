@@ -1,7 +1,5 @@
 # Pokemon Card NFT
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
-
 Compile contract:
 npx hardhat compile
 
@@ -9,7 +7,8 @@ Deploy contract script:
 npx hardhat --network goerli run scripts/deploy.ts
 
 contract deployed to address:
-0x93948a0e51E556728aF0862Ab258C0aBCD2BdDc1
+1 - 0x93948a0e51E556728aF0862Ab258C0aBCD2BdDc1
+2 - 0x682A0cD9B74cEaB00417B6391fb96B6a00b46C1B
 
 Execute mint-nft script:
 npx ts-node scripts/mint-nft.ts
@@ -17,8 +16,3 @@ npx ts-node scripts/mint-nft.ts
 Spesso provando a recuperare tramite il link ipfs da pinata ritorna errore di CORS
 https://ipfs.github.io/public-gateway-checker/
 qui ci sono tutti i siti che possono recuperare file caricati su ipfs
-
-- completare componente energy chooser
-- creare card interattiva al compilamento del form
-- fare pagina dettaglio card
-- aggiungere nella pagina dettaglio la funzione per acquistare card
