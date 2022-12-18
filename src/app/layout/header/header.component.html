@@ -1,6 +1,11 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <img src="../../../assets/image/pokecardNft.png" alt="logo" class="logo" />
+    <img
+      src="../../../assets/image/pokecardNft.png"
+      alt="logo"
+      class="logo"
+      [routerLink]="['']"
+    />
 
     <div class="only-desktop">
       <a
@@ -23,7 +28,7 @@
         routerLinkActive="active"
         ariaCurrentWhenActive="page"
         mat-button
-        >Create NFT</a
+        >Create Card NFT</a
       >
       <a
         routerLink="/my-profile"
