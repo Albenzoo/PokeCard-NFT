@@ -26,6 +26,12 @@ export class MyProfileComponent implements OnInit {
     this.spinner.show();
     this.wallet.getMyNFTs();
   }
+  refreshMyNfts() {
+    this.wallet.myNfts = [];
+    this.wallet.myNftsValue = 0;
+    this.wallet.getMyNFTs();
+
+  }
 
 
 }
