@@ -13,10 +13,16 @@ export class AllCardsComponent implements OnInit {
   constructor(private router: Router, public wallet: WalletService, private spinner: NgxSpinnerService,) { }
 
   ngOnInit(): void {
-    if (this.wallet.allNfts.length == 0 || this.wallet.allNfts.length <= 5) {
+    if (this.wallet.allNfts.length == 0) {
       this.spinner.show();
       this.wallet.getAllNFTs();
     }
+  }
+
+  refreshAllNfts() {
+    this.spinner.show();
+    this.wallet.allNfts = [];
+    this.wallet.getAllNFTs();
   }
 
   goToCardDetail(cardClicked: Card) {
