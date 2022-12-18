@@ -295,6 +295,16 @@
       mode="creation"
       [imagePreview]="imagePreview"
     ></poke-card>
+    <mat-form-field appearance="outline">
+      <mat-label>Price ETH</mat-label>
+      <input
+        [(ngModel)]="price"
+        name="price"
+        matInput
+        placeholder="Ex. 0.02 ~ 22€"
+      />
+      <mat-icon matSuffix> payments</mat-icon>
+    </mat-form-field>
     <button mat-raised-button color="primary" (click)="uploadCard()">
       Create card NFT
     </button>
