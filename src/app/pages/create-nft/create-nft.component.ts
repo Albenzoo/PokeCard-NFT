@@ -24,18 +24,14 @@ export class CreateNftComponent implements OnInit {
   imageLoadedSubject: Subject<any> = new Subject<any>();
   eventsImageLoaded: Subject<void> = new Subject<void>();
   step = 0;
-
-
-
+  price: string = "0.02";
 
 
   constructor(private apiService: ApiService) {
-
   }
 
   ngOnInit() {
 
-    //this.customCard = { "name": "Charmander", "hp": 50, "image": "ipfs://bafybeiceeiwbb6pmtqnscvp2moh2krpxuiqm3fplsnozxybw5ld4j75toe", "length": 2, "weight": 19, "type": "Lizard", "energy_type": "Fire", "rarity": "Common", "attack_list": [{ "cost": ["Colorless"], "name": "Scratch", "damage": 10 }, { "cost": ["Fire", "Colorless"], "name": "Ember", "text": "Discard I Fire Energy card attached to Charmander in order to use this attack.", "damage": 30 }], "description": "Obviously prefers hot places. If it gets caught in the rain, steam is said to spout from the tip of his tail.", "level": 10, "weaknesses": ["Water"], "resistance": [], "retreatCost": ["Colorless"], "artist": "Mitsuhiro Arita", "number": "46/102" };
     this.customCard = {
       name: "Charmander",
       hp: 50,
@@ -183,8 +179,9 @@ export class CreateNftComponent implements OnInit {
   uploadCard() {
     this.customCard.hp = Number(this.customCard.hp);
     this.customCard.level = Number(this.customCard.level);
+    const price = Number(this.price);
     console.log("customCard:", this.customCard);
-    this.apiService.loadCardToIPFS(this.customCard);
+    this.apiService.loadCardToIPFS(this.customCard, price);
   }
 
 }

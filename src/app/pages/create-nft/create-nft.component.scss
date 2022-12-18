@@ -3,7 +3,8 @@
 }
 #container {
     display: flex;
-    margin: 2rem;
+    margin-top: 4rem;
+    margin-inline: 6rem;
 
     #card-form {
         display: flex;
@@ -48,6 +49,17 @@
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
+        row-gap: 1rem;
+        button {
+            width: 16rem;
+            height: 4rem;
+            font-size: 1.5rem;
+            transition: all 0.3s ease-in-out;
+            &:hover {
+                transform: scale(1.1);
+                transition: all 0.3s ease-in-out;
+            }
+        }
     }
 }
 .rarity {
