@@ -9,6 +9,16 @@
     Total Value: <strong>{{ wallet.myNftsValue }} ETH</strong>
   </h2>
 </div>
+<div class="refresh-button-container">
+  <button
+    mat-fab
+    color="accent"
+    aria-label="Example icon button with a bookmark icon"
+    (click)="refreshMyNfts()"
+  >
+    <mat-icon> refresh</mat-icon>
+  </button>
+</div>
 
 <div
   class="cards-main-container"
@@ -16,11 +26,11 @@
 >
   <ng-container *ngFor="let card of wallet.myNfts">
     <ng-container *ngIf="card.weight">
-      <poke-card [pokemon]="card" mode="display"></poke-card>
+      <poke-card [pokemon]="card" mode="display" class="card"></poke-card>
     </ng-container>
   </ng-container>
 </div>
 
 <ng-template #connectYourWallet
-  >Connect your wallet to see your cards</ng-template
+  ><h2>Connect your wallet to see your cards</h2></ng-template
 >
