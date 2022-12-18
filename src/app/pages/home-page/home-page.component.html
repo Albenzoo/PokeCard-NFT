@@ -1,7 +1,19 @@
-<div class="cards-main-container">
-  <ng-container *ngFor="let card of wallet.allNfts">
-    <ng-container *ngIf="card.weight">
-      <poke-card [pokemon]="card" mode="display"></poke-card>
-    </ng-container>
-  </ng-container>
-</div>
+<mat-card class="last-cards-minted">
+  <mat-card-header>
+    <mat-card-title>Last NFT Cards minted</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="cards-main-container">
+      <ng-container *ngFor="let card of wallet.lastNfts">
+        <ng-container *ngIf="card.weight">
+          <poke-card
+            [pokemon]="card"
+            mode="display"
+            class="card"
+            (click)="goToCardDetail(card)"
+          ></poke-card>
+        </ng-container>
+      </ng-container>
+    </div>
+  </mat-card-content>
+</mat-card>
