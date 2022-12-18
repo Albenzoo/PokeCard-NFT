@@ -15,9 +15,15 @@
         align-items: center;
         padding-top: 3rem;
         .buy-button {
+            margin-top: 1rem;
             width: 8rem;
             height: 4rem;
             font-size: 2rem;
+            transition: all 0.3s ease-in-out;
+            &:hover {
+                transform: scale(1.1);
+                transition: all 0.3s ease-in-out;
+            }
         }
     }
 
