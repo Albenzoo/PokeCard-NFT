@@ -18,7 +18,7 @@ export class ApiService {
 
 
 
-  loadCardToIPFS(newCard: Card) {
+  loadCardToIPFS(newCard: Card, price: number) {
     this.spinner.show();
     this.pinataService.uploadFileToIPFS(newCard.image as File).pipe(
       switchMap(response1 => {
@@ -26,7 +26,7 @@ export class ApiService {
         newCard.image = response1.pinataURL;
         return this.pinataService.uploadJSONToIPFS(newCard);
       }),
-      switchMap(response2 => of(this.walletService.mintNFT(response2.pinataURL)))
+      switchMap(response2 => of(this.walletService.mintNFT(response2.pinataURL, price)))
     ).subscribe({
       next: (data: any) => {
         console.log("next");
