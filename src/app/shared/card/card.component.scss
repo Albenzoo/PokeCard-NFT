@@ -106,32 +106,6 @@
     font-display: swap;
 }
 
-/* 
-
-
-NOTES
-"CARDS" DEVELOPED FOR EDUCATIONAL PURPOSES. COPYRIGHTS REMAIN PROPERTY OF THEIR ORIGINAL OWNERS.
-1. This version of the cards uses tables instead of lists, for attacks.
-2. The lists are at the end where the descriptions and copyrights are. Each list element is styled differently.
-3. All four cards are held in an invisible table for organization 
-4. I have it set up where CodePad imports Lato from Google Fonts using a link rel. Lato is a close clone of Gill Sans, which is the real Pokemon card font, but not open source. 
-5. Updated the card sizes after some feedback on the Udacity slack and forums - mah pictures were too big!
-*/
-
-/* OVERALL LOOK AND FEEL */
-
-/* ----- Background of entire page */
-
-/* 
-Use this to test positioning of tables and text. 
-Turn it on by removing comment marks to see 
-*/
-
-/*
-table, td, tr {
-  border: 1px solid magenta;
-}
-*/
 .card-container {
     color: black;
     font-family: "Gill Sans";
@@ -159,6 +133,15 @@ div.green {
     /* green card background - GRASS TYPE */
     background: linear-gradient(to bottom right, #aae5b7, #78cf8b, #4fb665, #319d49, #4fb665, #78cf8b);
 }
+div.purple {
+    /* green card background - PSICO TYPE */
+    background: linear-gradient(to bottom right, #af84b9, #a56dae, #ad7db7, #be96cb, #be9ecd, #975ba5);
+}
+div.brown {
+    /* green card background - PSICO TYPE */
+    background: linear-gradient(to bottom right, #e9a151, #edc58a, #f1b558, #e9a761, #e9bc82, #ea8f44);
+}
+
 div.unknown {
     /* green card background - GRASS TYPE */
     background: linear-gradient(to bottom right, #c2185b, #78cf8b);
