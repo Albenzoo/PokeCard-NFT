@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Contract } from 'ethers';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { from } from 'rxjs';
 import { ApiService } from 'src/app/core/services/api.service';
 import { SnackBarService } from 'src/app/core/services/snack-bar.service';
 import { WalletService } from 'src/app/core/services/wallet.service';
-import Web3 from 'web3';
 
 @Component({
   selector: 'app-home-page',
@@ -19,15 +16,8 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
     if (this.wallet.allNfts.length == 0) {
       this.spinner.show();
-      this.wallet.getAllNFTs();
+      this.wallet.getFirstsNFTs();
     }
-    /*     const nftContract = new this.wallet.web3.eth.Contract(
-          this.wallet.contractInfo.contractABI,
-          this.wallet.contractInfo.contractAddress
-        );
-        nftContract.defaultAccount = this.wallet.walletAddress;
-        const nftBalance = nftContract.methods.balanceOf(this.wallet.walletAddress).call(); */
-
   }
 
 }
