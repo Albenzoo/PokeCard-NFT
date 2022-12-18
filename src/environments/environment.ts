@@ -1,8 +1,7 @@
 
 export const environment = {
    production: false,
-   contractAddress: '0x93948a0e51E556728aF0862Ab258C0aBCD2BdDc1',
-   PRIVATE_KEY:'1a0fcbb4fa75a19464e05072580c168ee65aed678cfd2b3181f2a33e670e557b',
+   contractAddress: '0x682A0cD9B74cEaB00417B6391fb96B6a00b46C1B',
    PUBLIC_KEY: '0x6E9404FAdB9B092DeBDb1d883d98B9C5A4FfBa37',
    apiUrl: 'https://eth-goerli.g.alchemy.com/v2/201UMLnLvF_3ShqOfxSOX_-jiXKbRe7H',
    ipfsBaseUrl: 'https://ipfs.io/',
