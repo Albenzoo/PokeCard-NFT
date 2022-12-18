@@ -1,0 +1,34 @@
+#container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 4rem;
+    .info-container {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        padding-top: 3rem;
+        .buy-button {
+            width: 8rem;
+            height: 4rem;
+            font-size: 2rem;
+        }
+    }
+
+    #card-preview {
+        .card {
+            zoom: 1.4;
+        }
+        min-width: 39%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+}
