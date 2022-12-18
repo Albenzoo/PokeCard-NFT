@@ -26,13 +26,11 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MyProfileComponent } from './pages/my-profile/my-profile.component';
+import { AllCardsComponent } from './pages/all-cards/all-cards.component';
+import { CardDetailComponent } from './pages/card-detail/card-detail.component';
 
 
-const routes: Routes = [
-  { path: '', component: HomePageComponent },
-  { path: 'create-nft', component: CreateNftComponent },
-  { path: 'my-profile', component: MyProfileComponent },
-];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +40,8 @@ const routes: Routes = [
     CardComponent,
     EnergyChooserComponent,
     MyProfileComponent,
+    AllCardsComponent,
+    CardDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +61,6 @@ const routes: Routes = [
     MatExpansionModule,
     NgxSpinnerModule,
     MatSnackBarModule,
-    RouterModule.forRoot(routes),
   ],
   exports: [RouterModule],
   providers: [],
