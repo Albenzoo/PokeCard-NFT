@@ -14,6 +14,8 @@ import { HttpClient } from '@angular/common/http';
 import { UtilsService } from './utils.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SnackBarService } from './snack-bar.service';
+import { Card } from '../models/card';
+import { CardComponent } from 'src/app/shared/card/card.component';
 
 @Injectable({
   providedIn: 'root',
@@ -43,6 +45,8 @@ export class WalletService {
 
   allNfts: any[] = [];
   myNfts: any[] = [];
+  myNftsValue: number = 0;
+  cardDetail: Card = <Card>{};
 
 
   // Method to update the value of the variable
@@ -72,11 +76,14 @@ export class WalletService {
       })
         ,);
   }
-  storeDataFromURI(url: string, addToMyNfts?: boolean): void {
+  storeDataFromURI(tokenId: string, url: string, price: string, seller: string, addToMyNfts?: boolean): void {
     const parseUrl = this.utilsService.parseIpfsUrl(url);
     this.getNftInfo(parseUrl).subscribe({
-      next: (data: any) => {
+      next: (data: Card) => {
         console.log({ data });
+        data.tokenId = tokenId;
+        data.price = price;
+        data.seller = seller;
         addToMyNfts ? this.myNfts.push(data) : this.allNfts.push(data);
         //console.log("Tutti gli NFT:", this.allNfts);
       },
@@ -94,19 +101,67 @@ export class WalletService {
     const items = await Promise.all(transactions.map(async (i: any) => {
       const tokenURI = await this.nftContract.methods.tokenURI(i.tokenId).call();
       //const nftData = await this.getDataFromPinataURI(tokenURI);
-      this.storeDataFromURI(tokenURI);
+      this.storeDataFromURI(i.tokenId, tokenURI, i.price, i.seller, false);
     }));
   }
+  public async getFirstsNFTs() {
+    //get all the transaction in the contract
+    let transactions = await this.nftContract.methods.getAllNFTs().call();
+    const slicedArray = transactions.slice(0, 28);
+    let counter = 0;
+    //Fetch all the details of every NFT from the contract and display
+    const items = await Promise.all(slicedArray.map(async (i: any) => {
+      const tokenURI = await this.nftContract.methods.tokenURI(i.tokenId).call();
+      //const nftData = await this.getDataFromPinataURI(tokenURI);
+      this.storeDataFromURI(i.tokenId, tokenURI, i.price, i.seller);
+      counter++;
+      if (counter == 2) return;
+    }));
+  }
+
+  async buyNFT(cardToBuy: Card) {
+    this.spinner.show();
+    const isWalletConnected = await this.checkWalletConnection();
+    if (!isWalletConnected) return;
+    const salePrice = this.web3Instance.utils.fromWei(cardToBuy.price, 'ether');
+    const priceBN = this.web3Instance.utils.toBN(cardToBuy.price);
+    let message = {
+      value: priceBN
+    }
+    //run the executeSale function
+    return await this.nftContract.methods.executeSale(cardToBuy.tokenId).send(message)
+      .then((response: any) => {
+        this.spinner.hide();
+        this.snackBarService.openSnackBar(`Card purchased correctly!`, "Awesome");
+        console.log({ response }, 'The hash of your transaction is: ',
+          response.transactionHash,
+          "\nCheck Alchemy's Mempool to view the status of your transaction!");
+        return response;
+      }
+      )
+      .catch((error: any) => {
+        console.error(error);
+        this.snackBarService.openSnackBar(error.message, "OK", true);
+        this.spinner.hide();
+        return throwError(() => new Error('Error buying card'))
+      });
+
+
+  }
+
 
   async getMyNFTs() {
     const isWalletConnected = await this.checkWalletConnection();
     if (!isWalletConnected) return;
     let allMyNFTsTransactions = await this.nftContract.methods.getMyNFTs().call();
 
-    console.log("Ecco i miei NFT:", allMyNFTsTransactions);
+    console.log("All my NFTs transactions:", allMyNFTsTransactions);
     const items = await Promise.all(allMyNFTsTransactions.map(async (i: any) => {
       const tokenURI = await this.nftContract.methods.tokenURI(i.tokenId).call();
-      return this.storeDataFromURI(tokenURI, true);
+      const priceEther = this.web3Instance.utils.fromWei(i.price, 'ether');
+
+      this.myNftsValue += Number(priceEther);
+      return this.storeDataFromURI(i.tokenId, tokenURI, i.price, i.seller, true);
     }));
     console.log("My NFTs:", this.myNfts);
   }
@@ -119,12 +174,12 @@ export class WalletService {
     return true;
   }
 
-  public async mintNFT(tokenURI: string) {
+  public async mintNFT(tokenURI: string, inputPrice: number) {
     const isWalletConnected = await this.checkWalletConnection();
     if (!isWalletConnected) return;
     const nonce = await this.web3Instance.eth.getTransactionCount(environment.PUBLIC_KEY, 'latest'); //get latest nonce
 
-    const inputPrice: number = 0.02;
+    //const inputPrice: number = 0.02;
     const price = this.web3Instance.utils.toWei(inputPrice.toString(), 'ether');
     const priceBN = this.web3Instance.utils.toBN(price);
     console.log('NFT price set:', price, 'Wei');
