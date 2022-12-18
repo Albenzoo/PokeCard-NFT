@@ -158,12 +158,12 @@ div.nameimageinfo {
     border-radius: 20px;
 }
 
-/* Border around animal's information to comply with requirements */
+/* Border around animal's */
 div.infoonly {
     //border: 1px dotted gray;
     //height: 240px;
     border-radius: 5px;
-    border-opacity: 50%;
+    //border-opacity: 50%;
 }
 
 /* Forcing tables to the same full width */
@@ -256,6 +256,8 @@ td.attackdesc {
     margin: 5px;
     padding: 5px;
     vertical-align: middle;
+    line-height: 1rem;
+    height: 3rem;
 }
 tr.attack-stat {
     height: 3rem;
@@ -369,17 +371,6 @@ span.strong {
 .rarity {
     max-width: 0.4rem;
 }
-
-/* Below is a MODIFIED Reset CSS file
-I was experiencing many issues between browsers with my code's sizing
-Code immediately below is public domain and allows for my work to show as intended */
-
-/* I have modified it to remove styles that I used so they will display properly */
-
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
 
 html,
 body,
