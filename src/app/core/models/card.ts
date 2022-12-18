@@ -1,11 +1,9 @@
 export type Energy = 'Fire' | 'Fighting' | 'Lightning' | 'Grass' | 'Water' | 'Psychic' | 'Darkness' | 'Metal' | 'Colorless' | null;
 type Rarity = 'Common' | 'Uncommon' | 'Rare' | 'Promo';
 export interface Card {
-  attributes?: any[];
-  image: File | string;
-
-
+  tokenId?: string,
   name: string; //The name of the card
+  image: File | string;
   hp: number; //The hit points of the card
   length: number;
   weight: number;
@@ -20,6 +18,8 @@ export interface Card {
   level?: number;
   artist: string; //The artist of the card
   number: string; //The nuber of the card
+  price?: string;
+  seller?: string;
 
 }
 
