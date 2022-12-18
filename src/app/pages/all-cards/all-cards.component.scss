@@ -1,0 +1,30 @@
+.example-card {
+    max-width: 400px;
+}
+
+.example-header-image {
+    background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+    background-size: cover;
+}
+
+.cards-main-container {
+    padding-top: 4rem;
+    padding-bottom: 6rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: flex-start;
+    gap: 5rem;
+    padding-inline: 7rem;
+}
+
+.card {
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+        transform: scale(1.1);
+        transition: all 0.3s ease-in-out;
+    }
+}

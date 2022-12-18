@@ -1,0 +1,12 @@
+<div class="cards-main-container">
+  <ng-container *ngFor="let card of wallet.allNfts">
+    <ng-container *ngIf="card.weight">
+      <poke-card
+        [pokemon]="card"
+        mode="display"
+        (click)="goToCardDetail(card)"
+        class="card"
+      ></poke-card>
+    </ng-container>
+  </ng-container>
+</div>
