@@ -32,7 +32,7 @@ export class CreateNftComponent implements OnInit {
 
   ngOnInit() {
 
-    this.customCard = {
+    /* this.customCard = {
       name: "Charmander",
       hp: 50,
       image: "",
@@ -62,8 +62,8 @@ export class CreateNftComponent implements OnInit {
       retreatCost: ["Colorless"],
       artist: 'Mitsuhiro Arita',
       number: '46/102'
-    };
-    /* this.customCard = {
+    }; */
+    this.customCard = {
       name: "Pikachu",
       hp: 50,
       image: "",
@@ -93,7 +93,7 @@ export class CreateNftComponent implements OnInit {
       retreatCost: ["Colorless"],
       artist: 'Mitsuhiro Arita',
       number: '58/102'
-    }; */
+    };
 
   }
 
@@ -155,8 +155,6 @@ export class CreateNftComponent implements OnInit {
     }
   }
 
-
-
   onFileSelected(event: any) {
     const file: File = event?.target?.files[0];
     if (file) {
@@ -164,8 +162,6 @@ export class CreateNftComponent implements OnInit {
         console.warn("Only images are supported");
         return;
       }
-
-
       const reader = new FileReader();
       reader.onload = () => {
         this.imagePreview = reader.result;
