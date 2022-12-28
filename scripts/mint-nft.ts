@@ -15,7 +15,7 @@ const nftContract = new web3.eth.Contract(
 );
 
 async function mintNFT(tokenURI: string) {
-  const nonce = await web3.eth.getTransactionCount(PUBLIC_KEY!, 'latest'); //get latest nonce
+  const nonce = await web3.eth.getTransactionCount(CONTRACT_ADDRESS!, 'latest'); //get latest nonce
 
   const inputPrice: number = 0.02;
   const price = web3.utils.toWei(inputPrice.toString(), 'ether');
