@@ -24,9 +24,6 @@ export class WalletService {
   constructor(private http: HttpClient, private utilsService: UtilsService, private spinner: NgxSpinnerService, private snackBarService: SnackBarService) { }
 
   web3Instance: any = new Web3(window.ethereum);
-  /*   web3 = createAlchemyWeb3(
-      environment.apiUrl,
-    ); */
   walletAddress: string = '';
   private subject = new Subject<boolean>();
 
@@ -186,7 +183,7 @@ export class WalletService {
   public async mintNFT(tokenURI: string, inputPrice: number) {
     const isWalletConnected = await this.checkWalletConnection();
     if (!isWalletConnected) return;
-    const nonce = await this.web3Instance.eth.getTransactionCount(environment.PUBLIC_KEY, 'latest'); //get latest nonce
+    const nonce = await this.web3Instance.eth.getTransactionCount(environment.contractAddress, 'latest'); //get latest nonce
 
     //const inputPrice: number = 0.02;
     const price = this.web3Instance.utils.toWei(inputPrice.toString(), 'ether');
