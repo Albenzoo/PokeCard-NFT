@@ -13,11 +13,11 @@ const targetPath = isProduction
 const environmentFileContent = `
 export const environment = {
    production: ${isProduction},
-   contractAddress: "${process.env["CONTRACT_ADDRESS"]}",
+   CONTRACT_ADDRESS: "${process.env["CONTRACT_ADDRESS"]}",
    PUBLIC_KEY: "${process.env["PUBLIC_KEY"]}",
-   ipfsBaseUrl: "${process.env["ipfsBaseUrl"]}",
+   IPFS_BASE_URL: "${process.env["IPFS_BASE_URL"]}",
    PINATA_JWT: "${process.env["PINATA_JWT"]}",
-   pinataBaseUrl: "${process.env["pinataBaseUrl"]}",
+   PINATA_BASE_URL: "${process.env["PINATA_BASE_URL"]}",
 };
     `;
 // write the content to the respective file
