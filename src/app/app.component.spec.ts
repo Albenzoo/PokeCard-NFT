@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'project-web3'`, () => {
+  it(`should have as title 'pokecard-nft'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('project-web3');
+    expect(app.title).toEqual('pokecard-nft');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('project-web3 app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('pokecard-nft app is running!');
   });
 });
