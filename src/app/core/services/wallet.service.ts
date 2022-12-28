@@ -32,7 +32,7 @@ export class WalletService {
 
 
   contractInfo: ContractInfo = {
-    contractAddress: environment.contractAddress,
+    contractAddress: environment.CONTRACT_ADDRESS,
     contractABI: contract.abi as AbiItem[],
   };
   nftContract = new this.web3Instance.eth.Contract(
@@ -183,7 +183,7 @@ export class WalletService {
   public async mintNFT(tokenURI: string, inputPrice: number) {
     const isWalletConnected = await this.checkWalletConnection();
     if (!isWalletConnected) return;
-    const nonce = await this.web3Instance.eth.getTransactionCount(environment.contractAddress, 'latest'); //get latest nonce
+    const nonce = await this.web3Instance.eth.getTransactionCount(this.contractInfo.contractAddress, 'latest'); //get latest nonce
 
     //const inputPrice: number = 0.02;
     const price = this.web3Instance.utils.toWei(inputPrice.toString(), 'ether');
@@ -200,7 +200,7 @@ export class WalletService {
     //the transaction
     const tx = {
       from: this.walletAddress,
-      to: environment.contractAddress,
+      to: this.contractInfo.contractAddress,
       nonce: nonce,
       gas: 500000,
       data: this.nftContract.methods.createToken(tokenURI, priceBN).encodeABI(),
