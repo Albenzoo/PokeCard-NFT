@@ -10,7 +10,7 @@ export class UtilsService {
 
   parseIpfsUrl(ipfsUrl: string): string {
     const cleanedIpfs = ipfsUrl.replace(':/', '');
-    const parsedUrl = environment.ipfsBaseUrl + cleanedIpfs;
+    const parsedUrl = environment.IPFS_BASE_URL + cleanedIpfs;
     return parsedUrl;
   }
 }
