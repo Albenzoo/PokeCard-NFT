@@ -15,7 +15,7 @@ export class PinataService {
   }
 
   uploadJSONToIPFS(newPokemonCard: Card) {
-    const url = `${environment.pinataBaseUrl}pinning/pinJSONToIPFS`;
+    const url = `${environment.PINATA_BASE_URL}pinning/pinJSONToIPFS`;
     const body = JSON.stringify({
       "pinataOptions": {
         "cidVersion": 1
@@ -45,7 +45,7 @@ export class PinataService {
     if (!image) {
       return throwError(() => new Error('Image not found'))
     }
-    const url = `${environment.pinataBaseUrl}pinning/pinFileToIPFS`;
+    const url = `${environment.PINATA_BASE_URL}pinning/pinFileToIPFS`;
     let formData: any = new FormData();
     formData.append('file', image, image.name);
 
