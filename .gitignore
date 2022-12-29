@@ -4,7 +4,6 @@
 .env
 /src/environments/*
 
-
 # Compiled output
 /dist
 /tmp
