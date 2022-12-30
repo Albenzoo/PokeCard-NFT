@@ -3,7 +3,6 @@
 # Environment file
 .env
 /src/environments/*
-/scripts/setenv.ts
 
 # Compiled output
 /dist
