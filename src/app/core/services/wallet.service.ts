@@ -23,10 +23,12 @@ import { CardComponent } from 'src/app/shared/card/card.component';
 export class WalletService {
   constructor(private http: HttpClient, private utilsService: UtilsService, private spinner: NgxSpinnerService, private snackBarService: SnackBarService) { }
 
-  web3Instance: any = new Web3(window.ethereum);
+  //web3Instance: any = new Web3(window.ethereum);
   walletAddress: string = '';
   private subject = new Subject<boolean>();
-
+  web3Instance = createAlchemyWeb3(
+    environment.ALCHEMY_PROVIDER,
+  );
   // Observable stream
   isConnected$: Observable<boolean> = this.subject.asObservable();
 
@@ -129,8 +131,8 @@ export class WalletService {
     this.spinner.show();
     const isWalletConnected = await this.checkWalletConnection();
     if (!isWalletConnected) return;
-    const salePrice = this.web3Instance.utils.fromWei(cardToBuy.price, 'ether');
-    const priceBN = this.web3Instance.utils.toBN(cardToBuy.price);
+    const salePrice = this.web3Instance.utils.fromWei(cardToBuy.price!, 'ether');
+    const priceBN = this.web3Instance.utils.toBN(cardToBuy.price!);
     let message = {
       value: priceBN
     }
@@ -240,7 +242,7 @@ export class WalletService {
         .then((accountsAddress: string) => {
           this.walletAddress = accountsAddress[0];
           console.log(this.walletAddress);
-          this.web3Instance = new Web3(window.ethereum);
+          //this.web3Instance = new Web3(window.ethereum);
           this.nftContract = new this.web3Instance.eth.Contract(
             this.contractInfo.contractABI,
             this.contractInfo.contractAddress,
