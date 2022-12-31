@@ -18,6 +18,7 @@ export const environment = {
    IPFS_BASE_URL: "${process.env["IPFS_BASE_URL"]}",
    PINATA_JWT: "${process.env["PINATA_JWT"]}",
    PINATA_BASE_URL: "${process.env["PINATA_BASE_URL"]}",
+   ALCHEMY_PROVIDER: "${process.env["ALCHEMY_PROVIDER"]}",
 };
     `;
 // write the content to the respective file
