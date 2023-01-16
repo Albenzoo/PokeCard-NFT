@@ -189,6 +189,22 @@ Project Link: [https://github.com/Albenzoo/PokeCard-NFT](https://github.com/Albe
 
 
 
-Spesso provando a recuperare tramite il link ipfs da pinata ritorna errore di CORS
-https://ipfs.github.io/public-gateway-checker/
-qui ci sono tutti i siti che possono recuperare file caricati su ipfs
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/albertopresenti/
+[product-screenshot]: images/screenshot.png
+[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
+[Angular-url]: https://angular.io/
+[web3js-logo]: https://img.shields.io/badge/Web3.js-E3632E?style=for-the-badge&logo=web3dotjs&logoColor=grey
+[web3js-url]: https://web3js.readthedocs.io/en/v1.8.1/
+[solidity-logo]: https://img.shields.io/badge/Solidity-363636?style=for-the-badge&logo=solidity&logoColor=grey
+[solidity-url]: https://docs.soliditylang.org/en/v0.8.17/
+[hardhat-logo]: https://img.shields.io/badge/Hardhat-FFF100?style=for-the-badge&logo=hardhat&logoColor=yellow
+[hardhat-url]: https://hardhat.org/
+[alchemy-logo]: https://img.shields.io/badge/Alchemy-5086F9?style=for-the-badge&logo=alchemy&logoColor=blue
+[alchemy-url]: https://www.alchemy.com/
+[pinata-logo]: https://img.shields.io/badge/Pinata-3FBBD7?style=for-the-badge&logo=pinata&logoColor=yellow
+[pinata-url]: https://www.pinata.cloud/
