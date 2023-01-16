@@ -147,7 +147,8 @@ Then you can deploy a new contract instance by running the command
    npm run deploy-contract
    ```
 note that, by default, this command deploy the contract on Goerli Testnet by running the `deploy.ts` script (you can see the command detail on `package.json` file)
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<p align="right">(<a href="#readme-top">back to top 🔝</a>)</p>
 
 
 ### Automatic NFTs minting
