@@ -26,7 +26,7 @@
   <h3 align="center">Poke Card NFT</h3>
 
   <p align="center">
-    A Dapp for create, sell and view Poke cards NFT!
+    A marketplace for create, sell and display Poke cards NFTs
     <br />
     <br />
     <a href="https://github.com/Albenzoo/PokeCard-NFT/issues">Report Bug</a>
@@ -47,7 +47,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-This is an NFT marketplace based on the creation and exchange of collectible NFT cards. This app is connected with the Ethereum blockchain (Goerli testnet) through web3.js and interact with a smart contract.
+This is an NFT marketplace based on the creation and exchange of collectible NFT cards. This app is connected with the Ethereum blockchain (by default Goerli testnet) through web3.js and interact with a smart contract.
 In this project you can find everything you need to make a decentralized app:
 
 - Smart contract used and how to deploy it
@@ -131,7 +131,7 @@ Run the project
    ```
    npm start 
    ```
-
+it will create the environment file based on your `.env`
 <!-- deploy-contract anchor -->
 <a name="deploy-contract"></a>
 ### Deploying the contract yourself
