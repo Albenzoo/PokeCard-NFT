@@ -26,7 +26,7 @@
   <h3 align="center">Poke Card NFT</h3>
 
   <p align="center">
-    A marketplace for create, sell and display Poke cards NFTs
+    A marketplace for create, buy, sell and display Poke cards NFTs
     <br />
     <br />
     <a href="https://github.com/Albenzoo/PokeCard-NFT/issues">Report Bug</a>
@@ -37,6 +37,8 @@
   </p>
 </div>
 
+
+
 ## Features
 
 - Create and sell your custom NFT Cards
@@ -44,6 +46,49 @@
 - Display all the cards created
 - Display last 4 cards minted
 - Display owned cards
+
+</br>
+
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+   <li>
+      <a href="#project-structure">Project Structure</a>
+      <ul>
+        <li><a href="#smart-contract">Smart Contract</a></li>
+        <li><a href="#angular-app">Angular App</a></li>
+        <li><a href="#utility-scripts">Utilitis Scripts</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a>
+          <ul>
+            <li><a href="#deploying-the-contract-yourself">Deploying the contract yourself</a></li>
+            <li><a href="#automatic-nfts-minting">Automatic NFTs minting</a></li>
+      </ul>
+    </li>
+    <li><a href="#build">Build</a></li>
+    <li><a href="#deploy-firebase">Deploy (Firebase)</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
+</br>
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -57,9 +102,8 @@ In this project you can find everything you need to make a decentralized app:
 For the ethereum node provider was used Alchemy, and for NFT storing was used Pinata.
 
 
-<p align="right">(<a href="#readme-top">back to top 🔝</a>)</p>
 
-## Built With
+### Built With
 
 * [![Angular][Angular.io]][Angular-url]
 * [![Web3js][web3js-logo]][web3js-url]
@@ -134,6 +178,7 @@ Run the project
 it will create the environment file based on your `.env`
 <!-- deploy-contract anchor -->
 <a name="deploy-contract"></a>
+
 ### Deploying the contract yourself
 The smart contract is the file `MyNFT.sol`
 
@@ -147,7 +192,6 @@ Then you can deploy a new contract instance by running the command
    ```
 note that, by default, this command deploy the contract on Goerli Testnet by running the `deploy.ts` script (you can see the command detail on `package.json` file)
 
-<p align="right">(<a href="#readme-top">back to top 🔝</a>)</p>
 
 
 ### Automatic NFTs minting
@@ -158,16 +202,43 @@ In order to start the minting process run
    ```sh
    npm run mint
    ```
+<p align="right">(<a href="#readme-top">back to top 🔝</a>)</p>
 
 ## Build
    ```sh
    npm run build
    ```
+<p align="right">(<a href="#readme-top">back to top 🔝</a>)</p>
 
 ## Deploy (Firebase)
    ```sh
    firebase deploy
    ```
+<p align="right">(<a href="#readme-top">back to top 🔝</a>)</p>
+
+
+<!-- CONTRIBUTING -->
+## Contributing
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<p align="right">(<a href="#readme-top">back to top 🔝</a>)</p>
+
+
+
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
 <p align="right">(<a href="#readme-top">back to top 🔝</a>)</p>
 
 <!-- CONTACT -->
@@ -185,6 +256,8 @@ Project Link: [https://github.com/Albenzoo/PokeCard-NFT](https://github.com/Albe
 * [Ethereum.org - How to write and deploy an NFT](https://ethereum.org/en/developers/tutorials/how-to-write-and-deploy-an-nft/)
 * [OpenZeppelin contract wizard](https://wizard.openzeppelin.com/#erc721)
 * [Readme Template](https://github.com/othneildrew/Best-README-Template#readme-top)
+* [Angular Material v13](https://v13.material.angular.io/components/categories)
+* [Google Fonts - Icons](https://fonts.google.com/icons)
 <p align="right">(<a href="#readme-top">back to top 🔝</a>)</p>
 
 
