@@ -211,6 +211,7 @@ In order to start the minting process run
 <p align="right">(<a href="#readme-top">back to top 🔝</a>)</p>
 
 ## Deploy (Firebase)
+First increase the version in package.json and build the project with the command above, then run 
    ```sh
    firebase deploy
    ```
