@@ -17,7 +17,7 @@
     align-items: center;
     align-content: flex-start;
     gap: 5rem;
-    padding-inline: 7rem;
+    padding-inline: 5rem;
 }
 
 .card {
@@ -30,7 +30,7 @@
 }
 .refresh-button-container {
     position: sticky;
-    bottom: 4rem;
+    bottom: 2rem;
     right: 1rem;
     float: right;
     @media (min-width: 768px) {
