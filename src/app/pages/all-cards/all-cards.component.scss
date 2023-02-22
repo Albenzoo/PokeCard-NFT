@@ -29,10 +29,12 @@
     }
 }
 .refresh-button-container {
-    position: relative;
-    justify-content: center;
+    position: sticky;
+    bottom: 4rem;
+    right: 1rem;
     float: right;
-    top: 2rem;
-    justify-content: center;
-    width: 120px;
+    @media (min-width: 768px) {
+        bottom: 3rem;
+        right: 3rem;
+    }
 }

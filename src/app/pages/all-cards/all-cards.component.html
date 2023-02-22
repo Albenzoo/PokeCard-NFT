@@ -1,14 +1,3 @@
-<div class="refresh-button-container">
-  <button
-    mat-fab
-    color="accent"
-    aria-label="Example icon button with a bookmark icon"
-    (click)="refreshAllNfts()"
-  >
-    <mat-icon> refresh</mat-icon>
-  </button>
-</div>
-
 <div class="cards-main-container">
   <ng-container *ngFor="let card of wallet.allNfts">
     <ng-container *ngIf="card.weight">
@@ -20,4 +9,14 @@
       ></poke-card>
     </ng-container>
   </ng-container>
+</div>
+<div class="refresh-button-container">
+  <button
+    mat-fab
+    color="accent"
+    aria-label="Refresh Cards button"
+    (click)="refreshAllNfts()"
+  >
+    <mat-icon> refresh</mat-icon>
+  </button>
 </div>
