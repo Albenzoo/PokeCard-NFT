@@ -9,16 +9,6 @@
     Total Value: <strong>{{ wallet.myNftsValue }} ETH</strong>
   </h2>
 </div>
-<div class="refresh-button-container">
-  <button
-    mat-fab
-    color="accent"
-    aria-label="Example icon button with a bookmark icon"
-    (click)="refreshMyNfts()"
-  >
-    <mat-icon> refresh</mat-icon>
-  </button>
-</div>
 
 <div
   class="cards-main-container"
@@ -34,3 +24,14 @@
 <ng-template #connectYourWallet
   ><h2>Connect your wallet to see your cards</h2></ng-template
 >
+
+<div class="refresh-button-container">
+  <button
+    mat-fab
+    color="accent"
+    aria-label="Refresh Cards button"
+    (click)="refreshMyNfts()"
+  >
+    <mat-icon> refresh</mat-icon>
+  </button>
+</div>
