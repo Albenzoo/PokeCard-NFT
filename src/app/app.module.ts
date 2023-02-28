@@ -28,8 +28,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 import { AllCardsComponent } from './pages/all-cards/all-cards.component';
 import { CardDetailComponent } from './pages/card-detail/card-detail.component';
-
-
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -61,6 +61,8 @@ import { CardDetailComponent } from './pages/card-detail/card-detail.component';
     MatExpansionModule,
     NgxSpinnerModule,
     MatSnackBarModule,
+    MatSidenavModule,
+    MatListModule,
   ],
   exports: [RouterModule],
   providers: [],

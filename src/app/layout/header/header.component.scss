@@ -11,3 +11,16 @@
 .only-desktop {
     padding-left: 1rem;
 }
+@media (min-width: 769px) {
+    .only-mobile {
+        display: none;
+    }
+}
+
+//when used smartphone
+@media (max-width: 769px) {
+    .only-desktop,
+    .walletButton {
+        display: none;
+    }
+}

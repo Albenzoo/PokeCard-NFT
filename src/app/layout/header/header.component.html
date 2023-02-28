@@ -1,5 +1,8 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
+    <button class="only-mobile" mat-icon-button (click)="menuIconClicked()">
+      <mat-icon>menu</mat-icon>
+    </button>
     <img
       src="../../../assets/image/pokecardNft.png"
       alt="logo"
@@ -44,6 +47,7 @@
       mat-raised-button
       [ngStyle]="this.wallet.web3Instance && { 'background-color': 'green' }"
       (click)="connectWallet()"
+      class="walletButton"
     >
       <mat-icon
         *ngIf="this.wallet.web3Instance"
