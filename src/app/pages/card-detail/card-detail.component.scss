@@ -3,9 +3,19 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-content: center;
+    align-items: center;
+
+    @media (min-width: 769px) {
+        padding-top: 4rem;
+    }
+
+    //when used smartphone
+    @media (max-width: 769px) {
+        padding-bottom: 3rem;
+    }
     justify-content: center;
-    align-items: flex-start;
-    padding-top: 4rem;
+    column-gap: 4rem;
+    row-gap: 3rem;
     .info-container {
         display: flex;
         flex-direction: column;
@@ -29,7 +39,7 @@
 
     #card-preview {
         .card {
-            zoom: 1.4;
+            zoom: 1.2;
         }
         min-width: 39%;
         display: flex;
