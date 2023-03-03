@@ -7,7 +7,10 @@
       Price: <strong>{{ parsePriceToEther(card.price!) }} ETH</strong>
     </h2>
     <h2>
-      Seller: <strong>{{ card.seller }}</strong>
+      Seller:
+      <strong>
+        {{ (card.seller | slice : 0 : 4) + "..." + (card.seller | slice : -4) }}
+      </strong>
     </h2>
 
     <button
