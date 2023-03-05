@@ -4,10 +4,14 @@
       Name: <strong>{{ card.name }}</strong>
     </h2>
     <h2>
-      Price: <strong>{{ parsePriceToEther(card.price!) }} ETH</strong>
+      Price: <strong>{{ ethPrice }} ETH</strong> ≃
+      <strong>{{ eurPrice | slice : 0 : 6 }} €</strong>
     </h2>
     <h2>
-      Seller: <strong>{{ card.seller }}</strong>
+      Seller:
+      <strong>
+        {{ (card.seller | slice : 0 : 4) + "..." + (card.seller | slice : -4) }}
+      </strong>
     </h2>
 
     <button
@@ -23,7 +27,7 @@
       Buy
     </button>
     <ng-template #alreadyOwner
-      ><h1>You are already the owner of this card!</h1></ng-template
+      ><h2>You are the owner of this card!</h2></ng-template
     >
   </div>
 

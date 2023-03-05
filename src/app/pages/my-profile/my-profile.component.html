@@ -1,31 +1,41 @@
 <div class="info-container">
-  <h2>
-    Wallet: <strong>{{ wallet.walletAddress }}</strong>
-  </h2>
+  <ng-container *ngIf="wallet.walletAddress; else connectYourWallet">
+    <h2>
+      Wallet:
+      <strong>{{
+        (wallet.walletAddress | slice : 0 : 4) +
+          "..." +
+          (wallet.walletAddress | slice : -4)
+      }}</strong>
+    </h2>
+  </ng-container>
+  <ng-template #connectYourWallet
+    ><h2>Connect your wallet to see the cards</h2></ng-template
+  >
+
   <h2>
     No. of NFT Cards: <strong>{{ wallet.myNfts.length }} Cards</strong>
   </h2>
   <h2>
-    Total Value: <strong>{{ wallet.myNftsValue }} ETH</strong>
+    Total Value: <strong>{{ wallet.myNftsValue }} ETH</strong> ≃
+    <strong>{{ totalValueEur | slice : 0 : 6 }} €</strong>
   </h2>
 </div>
 
-<div
-  class="cards-main-container"
-  *ngIf="wallet.walletAddress; else connectYourWallet"
->
+<div class="cards-main-container" *ngIf="wallet.walletAddress">
   <ng-container *ngFor="let card of wallet.myNfts">
     <ng-container *ngIf="card.weight">
-      <poke-card [pokemon]="card" mode="display" class="card"></poke-card>
+      <poke-card
+        [pokemon]="card"
+        mode="display"
+        class="card"
+        (click)="goToCardDetail(card)"
+      ></poke-card>
     </ng-container>
   </ng-container>
 </div>
 
-<ng-template #connectYourWallet
-  ><h2>Connect your wallet to see your cards</h2></ng-template
->
-
-<div class="refresh-button-container">
+<div *ngIf="wallet.walletAddress" class="refresh-button-container">
   <button
     mat-fab
     color="accent"
