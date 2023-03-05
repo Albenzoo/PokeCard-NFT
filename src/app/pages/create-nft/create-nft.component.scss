@@ -3,8 +3,16 @@
 }
 #container {
     display: flex;
-    margin-top: 4rem;
+    padding-top: 4rem;
     margin-inline: 6rem;
+    padding-bottom: 2rem;
+
+    @media (max-width: 1025px) {
+        flex-direction: column;
+        margin-inline: 1rem;
+        padding-top: 2rem;
+        row-gap: 2rem;
+    }
 
     #card-form {
         display: flex;
