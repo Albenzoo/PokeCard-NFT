@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { UtilsService } from 'src/app/core/services/utils.service';
 import { WalletService } from 'src/app/core/services/wallet.service';
 
 @Component({
@@ -8,7 +9,8 @@ import { WalletService } from 'src/app/core/services/wallet.service';
 })
 export class MyProfileComponent implements OnInit {
 
-  constructor(private spinner: NgxSpinnerService, public wallet: WalletService) { }
+  totalValueEur: string = "";
+  constructor(private utilsService: UtilsService, private spinner: NgxSpinnerService, public wallet: WalletService) { }
 
   ngOnInit(): void {
     if (this.wallet.myNfts.length == 0) {
@@ -25,12 +27,19 @@ export class MyProfileComponent implements OnInit {
   getMyNfts() {
     this.spinner.show();
     this.wallet.getMyNFTs();
+    this.parseTotalValueToEur();
+
   }
   refreshMyNfts() {
     this.wallet.myNfts = [];
     this.wallet.myNftsValue = 0;
     this.wallet.getMyNFTs();
+  }
 
+  parseTotalValueToEur() {
+    this.utilsService.getEurFromEth().subscribe((data: any) => {
+      this.totalValueEur = (data.EUR * this.wallet.myNftsValue).toString();
+    });
   }
 
 

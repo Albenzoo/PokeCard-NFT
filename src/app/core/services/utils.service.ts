@@ -15,7 +15,7 @@ export class UtilsService {
     return parsedUrl;
   }
 
-  getEurFromEth(ethValue: string) {
+  getEurFromEth() {
     const ETH_CURRENT_PRICE_URL: string = "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=EUR";
     return this.http.get(ETH_CURRENT_PRICE_URL);
   }

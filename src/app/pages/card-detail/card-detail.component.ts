@@ -10,13 +10,13 @@ export class CardDetailComponent implements OnInit {
 
   ethPrice: string = "";
   eurPrice: string = "";
-  constructor(public wallet: WalletService, public utilsService: UtilsService) { }
+  constructor(public wallet: WalletService, private utilsService: UtilsService) { }
 
   ngOnInit(): void {
     console.log("detail:", this.wallet.cardDetail);
     console.log("wallet connesso:", this.wallet.walletAddress);
     this.parsePriceToEther(this.wallet.cardDetail.price);
-    this.utilsService.getEurFromEth(this.ethPrice).subscribe((data: any) => {
+    this.utilsService.getEurFromEth().subscribe((data: any) => {
       this.eurPrice = (data.EUR * parseFloat(this.ethPrice)).toString();
     });
   }
