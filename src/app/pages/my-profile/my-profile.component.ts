@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Card } from 'src/app/core/models/card';
 import { UtilsService } from 'src/app/core/services/utils.service';
 import { WalletService } from 'src/app/core/services/wallet.service';
 
@@ -10,7 +12,7 @@ import { WalletService } from 'src/app/core/services/wallet.service';
 export class MyProfileComponent implements OnInit {
 
   totalValueEur: string = "";
-  constructor(private utilsService: UtilsService, private spinner: NgxSpinnerService, public wallet: WalletService) { }
+  constructor(private router: Router, private utilsService: UtilsService, private spinner: NgxSpinnerService, public wallet: WalletService) { }
 
   ngOnInit(): void {
     if (this.wallet.myNfts.length == 0) {
@@ -21,7 +23,8 @@ export class MyProfileComponent implements OnInit {
         if (isConnected === true && this.wallet.myNfts.length == 0) {
           this.getMyNfts();
         }
-      })
+      });
+      this.parseTotalValueToEur();
     }
   }
   getMyNfts() {
@@ -40,6 +43,10 @@ export class MyProfileComponent implements OnInit {
     this.utilsService.getEurFromEth().subscribe((data: any) => {
       this.totalValueEur = (data.EUR * this.wallet.myNftsValue).toString();
     });
+  }
+  goToCardDetail(cardClicked: Card) {
+    this.wallet.cardDetail = cardClicked;
+    this.router.navigate([`/card-detail`]);
   }
 
 
