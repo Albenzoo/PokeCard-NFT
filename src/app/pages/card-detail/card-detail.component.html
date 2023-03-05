@@ -4,7 +4,8 @@
       Name: <strong>{{ card.name }}</strong>
     </h2>
     <h2>
-      Price: <strong>{{ parsePriceToEther(card.price!) }} ETH</strong>
+      Price: <strong>{{ ethPrice }} ETH</strong> ≃
+      <strong>{{ eurPrice | slice : 0 : 6 }} €</strong>
     </h2>
     <h2>
       Seller:

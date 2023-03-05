@@ -18,7 +18,7 @@ export interface Card {
   level?: number;
   artist: string; //The artist of the card
   number: string; //The nuber of the card
-  price?: string;
+  price: string;
   seller?: string;
 
 }
