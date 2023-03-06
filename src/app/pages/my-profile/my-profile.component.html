@@ -17,14 +17,20 @@
     No. of NFT Cards: <strong>{{ wallet.myNfts.length }} Cards</strong>
   </h2>
   <h2>
-    Total Value: <strong>{{ wallet.myNftsValue }} ETH</strong>
+    Total Value: <strong>{{ wallet.myNftsValue }} ETH</strong> ≃
+    <strong>{{ totalValueEur | slice : 0 : 6 }} €</strong>
   </h2>
 </div>
 
 <div class="cards-main-container" *ngIf="wallet.walletAddress">
   <ng-container *ngFor="let card of wallet.myNfts">
     <ng-container *ngIf="card.weight">
-      <poke-card [pokemon]="card" mode="display" class="card"></poke-card>
+      <poke-card
+        [pokemon]="card"
+        mode="display"
+        class="card"
+        (click)="goToCardDetail(card)"
+      ></poke-card>
     </ng-container>
   </ng-container>
 </div>

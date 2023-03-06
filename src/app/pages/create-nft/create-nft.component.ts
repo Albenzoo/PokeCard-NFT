@@ -92,7 +92,8 @@ export class CreateNftComponent implements OnInit {
       resistance: [],
       retreatCost: ["Colorless"],
       artist: 'Mitsuhiro Arita',
-      number: '58/102'
+      number: '58/102',
+      price: "0.02",
     };
 
   }
