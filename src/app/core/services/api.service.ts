@@ -22,15 +22,11 @@ export class ApiService {
     this.spinner.show();
     this.pinataService.uploadFileToIPFS(newCard.image as File).pipe(
       switchMap(response1 => {
-        console.log("Card image response:", response1);
         newCard.image = response1.pinataURL;
         return this.pinataService.uploadJSONToIPFS(newCard);
       }),
       switchMap(response2 => of(this.walletService.mintNFT(response2.pinataURL, price)))
     ).subscribe({
-      next: (data: any) => {
-        console.log("next");
-      },
       error: (error: any) => {
         this.snackBarService.openSnackBar(error, "OK", true);
         this.spinner.hide();
