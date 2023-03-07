@@ -63,7 +63,6 @@ export class WalletService {
           if (err != null) {
             reject(err);
           }
-          console.log('Numero di NFT: ', result);
           resolve(result);
         });
     }) as Promise<number>;
@@ -163,7 +162,6 @@ export class WalletService {
     if (!isWalletConnected) return;
     let allMyNFTsTransactions = await this.nftContract.methods.getMyNFTs().call();
 
-    console.log("All my NFTs transactions:", allMyNFTsTransactions);
     const items = await Promise.all(allMyNFTsTransactions.map(async (i: any) => {
       const tokenURI = await this.nftContract.methods.tokenURI(i.tokenId).call();
       const priceEther = this.web3Instance.utils.fromWei(i.price, 'ether');
@@ -171,7 +169,6 @@ export class WalletService {
       this.myNftsValue += Number(priceEther);
       return this.storeDataFromURI(i.tokenId, tokenURI, i.price, i.seller, "myNfts");
     }));
-    console.log("My NFTs:", this.myNfts);
   }
 
 

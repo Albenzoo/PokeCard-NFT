@@ -147,7 +147,6 @@ export class CreateNftComponent implements OnInit {
   }
   onAddAttackCost(energy: Energy, index: number) {
     this.customCard.attack_list[index].cost.push(energy);
-    console.log("costo:", this.customCard.attack_list);
   }
   onRemoveAttackCost(energy: Energy, index: number) {
     const found = this.customCard.attack_list[index].cost.indexOf(energy, 0);
@@ -177,7 +176,6 @@ export class CreateNftComponent implements OnInit {
     this.customCard.hp = Number(this.customCard.hp);
     this.customCard.level = Number(this.customCard.level);
     const price = Number(this.price);
-    console.log("customCard:", this.customCard);
     this.apiService.loadCardToIPFS(this.customCard, price);
   }
 
