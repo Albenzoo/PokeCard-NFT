@@ -23,7 +23,7 @@
     <img src="src/assets/image/poke-favicon.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Poke Card NFT</h3>
+  <h3 align="center">Pokecard NFT</h3>
 
   <p align="center">
     A marketplace for create, buy, sell and display Pokemon NFT cards
