@@ -26,7 +26,7 @@
   <h3 align="center">Poke Card NFT</h3>
 
   <p align="center">
-    A marketplace for create, buy, sell and display Poke cards NFTs
+    A marketplace for create, buy, sell and display Pokemon NFT cards
     <br />
     <br />
     <a href="https://github.com/Albenzoo/PokeCard-NFT/issues">Report Bug</a>
