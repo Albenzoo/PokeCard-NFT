@@ -1,0 +1,42 @@
+{
+  "name": "Squirtle",
+  "hp": 40,
+  "image": "ipfs://bafybeiessvaae5fki3q5hk63g4ukmevjsei4vxsouadn5zdbg64cy5z4n4",
+  "length": "1.8",
+  "weight": "20",
+  "type": "Tiny Turtle",
+  "energy_type": "Water",
+  "rarity": "Common",
+  "attack_list": [
+    {
+      "cost": [
+        "Water"
+      ],
+      "name": "Bubble",
+      "text": "Flip a coin. If heads, the defending Pokemon is now Paralyzed",
+      "damage": 10
+    },
+    {
+      "cost": [
+        "Water",
+        "Colorless"
+      ],
+      "name": "Withdraw",
+      "text": "Flip a coin. If heads, prevent all damage done to Squirtle during your opponent's net turn. (Any other effects of attacks still happen.)",
+      "damage": ""
+    }
+  ],
+  "description": "After birth, its back swells and hardens into a shell. It powerfully spray foam its mouth.",
+  "level": 10,
+  "weaknesses": [
+    "Lightning"
+  ],
+  "resistance": [
+    
+  ],
+  "retreatCost": [
+    "Colorless"
+  ],
+  "artist": "Mitsuhiro Arita",
+  "number": "63/102"
+}
