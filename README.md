@@ -195,8 +195,7 @@ note that, by default, this command deploy the contract on Goerli Testnet by run
 
 
 ### Automatic NFTs minting
-If you wanna populate quickly your smart contract with some NFTs CID 
-created early, you can compile the `pinataMintCid.json` file with the CID code you want to mint in your contract.
+If you want to quickly populate your smart contract with some NFTs whose CID was created earlier, you can compile the `pinataMintCid.json` file with the CID code you want to mint in your contract. Your Pokemon on Pinata have to follow this structure: `scripts/squirtle-example.json`, then place the CID in `pinataMintCid.json` file.
 
 In order to start the minting process run 
    ```sh
